@@ -74,7 +74,7 @@ export const subscriptionRouter = createTRPCRouter({
         message: "success",
       };
     }),
-  unsubscribe: localOnlyProcedure
+  unsubscribe: publicProcedure
     .input(z.object({ unsubscribeId: z.string() }))
     .mutation(async ({ input }) => {
       const subscription = await client
@@ -118,7 +118,7 @@ export const subscriptionRouter = createTRPCRouter({
         message: "success",
       };
     }),
-  compose: publicProcedure
+  compose: localOnlyProcedure
     .input(z.object({ subject: z.string(), body: z.string() }))
     .mutation(async ({ input }) => {
       const subscriptions = await client
