@@ -146,10 +146,10 @@ export const subscriptionRouter = createTRPCRouter({
                   Charset: "UTF-8",
                   Data: input.body + unsubscribeLinkHtml,
                 },
-                Text: {
-                  Charset: "UTF-8",
-                  Data: input.body + unsubscribeLinkText,
-                },
+                // Text: {
+                //   Charset: "UTF-8",
+                //   Data: input.body + unsubscribeLinkText,
+                // },
               },
               Subject: {
                 Charset: "UTF-8",
