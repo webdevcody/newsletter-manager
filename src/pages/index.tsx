@@ -1,8 +1,12 @@
+import { TRPCClientError } from "@trpc/client";
+import { DefaultErrorShape, TRPCError } from "@trpc/server";
+import classNames from "classnames";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { Alert } from "../components/Alert";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Label } from "../components/Label";
@@ -13,6 +17,7 @@ const Home: NextPage = () => {
   const subscribe = api.subscription.subscribe.useMutation();
   const [form, setForm] = useState({ email: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   function handleSubscribe(e: React.FormEvent) {
@@ -25,8 +30,16 @@ const Home: NextPage = () => {
       .then(() => {
         return router.push("/success");
       })
-      .catch(() => {
-        // TODO
+      .catch((err: Error) => {
+        const message = err.message;
+        const errors = JSON.parse(message) as {
+          message: string;
+        }[];
+        setError(
+          errors.length === 0
+            ? "something went wrong =("
+            : errors[0]?.message ?? "something went wrong"
+        );
       })
       .finally(() => {
         setIsLoading(false);
@@ -60,15 +73,18 @@ const Home: NextPage = () => {
           new tutorials and courses.
         </p>
 
+        {error && <Alert>{error}</Alert>}
+
         <form onSubmit={handleSubscribe} className="flex flex-col gap-6">
           <fieldset className="flex flex-col gap-2">
             <Label htmlFor="email">Email</Label>
             <Input
-              className="w-80"
+              className={classNames("w-80", error && "border border-red-500")}
               placeholder="your-email@example.com"
               onChange={(e) => setForm({ email: e.currentTarget.value })}
               id="email"
               name="email"
+              required
               type="email"
             />
           </fieldset>

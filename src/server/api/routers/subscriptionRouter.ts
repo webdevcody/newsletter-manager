@@ -29,7 +29,7 @@ type TSubscription = {
 
 export const subscriptionRouter = createTRPCRouter({
   subscribe: publicProcedure
-    .input(z.object({ email: z.string() }))
+    .input(z.object({ email: z.string().email() }))
     .mutation(async ({ input }) => {
       const { Item: subscription } = await client
         .get({
