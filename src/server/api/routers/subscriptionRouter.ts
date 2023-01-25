@@ -5,11 +5,19 @@ import { createTRPCRouter, localOnlyProcedure, publicProcedure } from "../trpc";
 import { v4 as uuidv4 } from "uuid";
 
 const ses = new SES({
-  region: "us-east-1",
+  region: process.env.REGION,
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY!,
+    secretAccessKey: process.env.SECRET_KEY!,
+  },
 });
 
 const client = new DynamoDB.DocumentClient({
-  region: "us-east-1",
+  region: process.env.REGION,
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY!,
+    secretAccessKey: process.env.SECRET_KEY!,
+  },
 });
 
 type TSubscription = {
