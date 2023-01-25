@@ -12,10 +12,10 @@ const SuccessPage: NextPage = () => {
       </Head>
       <main className="container m-auto flex min-h-screen flex-col items-center justify-center gap-6 p-4">
         <Image
-          width="200"
-          height="200"
+          width="100"
+          height="100"
           className="rounded-full"
-          src="/success.png"
+          src="/celebrating.svg"
           alt="woman celebrating"
         ></Image>
         <h1 className="text-4xl">Successfully subscribed!</h1>

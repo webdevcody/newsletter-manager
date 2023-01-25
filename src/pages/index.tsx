@@ -14,37 +14,22 @@ import { Label } from "../components/Label";
 import { api } from "../utils/api";
 
 const Home: NextPage = () => {
-  const subscribe = api.subscription.subscribe.useMutation();
+  const subscribe = api.subscription.subscribe.useMutation({
+    onSuccess() {
+      return router.push("/success");
+    },
+  });
   const [form, setForm] = useState({ email: "" });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const router = useRouter();
 
   function handleSubscribe(e: React.FormEvent) {
     e.preventDefault();
-    setIsLoading(true);
-    subscribe
-      .mutateAsync({
-        email: form.email,
-      })
-      .then(() => {
-        return router.push("/success");
-      })
-      .catch((err: Error) => {
-        const message = err.message;
-        const errors = JSON.parse(message) as {
-          message: string;
-        }[];
-        setError(
-          errors.length === 0
-            ? "something went wrong =("
-            : errors[0]?.message ?? "something went wrong"
-        );
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    subscribe.mutate({
+      email: form.email,
+    });
   }
+
+  const emailError = subscribe.error?.data?.zodError?.fieldErrors.email?.[0];
 
   return (
     <>
@@ -58,8 +43,8 @@ const Home: NextPage = () => {
           className="rounded-full"
           alt="web dev cody brand image"
           src="/wdc.jpeg"
-          width="200"
-          height="200"
+          width="100"
+          height="100"
         />
 
         <h1 className="text-center text-4xl font-bold">
@@ -73,13 +58,18 @@ const Home: NextPage = () => {
           new tutorials and courses.
         </p>
 
-        {error && <Alert>{error}</Alert>}
+        {subscribe.error && (
+          <Alert>Please correct the errors in the form below.</Alert>
+        )}
 
         <form onSubmit={handleSubscribe} className="flex flex-col gap-6">
           <fieldset className="flex flex-col gap-2">
             <Label htmlFor="email">Email</Label>
             <Input
-              className={classNames("w-80", error && "border border-red-500")}
+              className={classNames(
+                "w-80",
+                emailError && "border border-red-400"
+              )}
               placeholder="your-email@example.com"
               onChange={(e) => setForm({ email: e.currentTarget.value })}
               id="email"
@@ -87,9 +77,10 @@ const Home: NextPage = () => {
               required
               type="email"
             />
+            <span className="text-red-400">{emailError}</span>
           </fieldset>
-          <Button isLoading={isLoading}>
-            {isLoading ? "Subscribing..." : "Subscribe"}
+          <Button isLoading={subscribe.isLoading}>
+            {subscribe.isLoading ? "Subscribing..." : "Subscribe"}
           </Button>
         </form>
       </main>

@@ -9,7 +9,7 @@ module.exports = {
       colors: {
         wdc: {
           dark: "#1c2026",
-          light: "#31e7f7",
+          light: "#34eafa",
           primary: "#2fdeed",
         },
       },

@@ -9,7 +9,7 @@ export function Button(props: Props) {
     <button
       disabled={props.isLoading}
       className={classNames(
-        "flex items-center justify-center gap-3 rounded-sm bg-wdc-primary p-3 text-lg text-black hover:bg-wdc-light disabled:bg-gray-500",
+        "flex items-center justify-center gap-3 rounded-lg bg-wdc-primary p-3 text-lg text-black hover:bg-wdc-light disabled:bg-gray-500",
         props.className
       )}
     >
