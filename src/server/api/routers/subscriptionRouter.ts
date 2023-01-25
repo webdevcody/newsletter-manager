@@ -158,7 +158,10 @@ export const subscriptionRouter = createTRPCRouter({
             },
             Source: "WebDevCody Newsletter <newsletter@webdevcody.com>",
           })
-          .promise();
+          .promise()
+          .catch((err) => {
+            console.error(err);
+          });
         console.timeEnd("sending email");
       }
       return {
