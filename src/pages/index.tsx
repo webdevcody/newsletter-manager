@@ -12,10 +12,12 @@ import { api } from "../utils/api";
 const Home: NextPage = () => {
   const subscribe = api.subscription.subscribe.useMutation();
   const [form, setForm] = useState({ email: "" });
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   function handleSubscribe(e: React.FormEvent) {
     e.preventDefault();
+    setIsLoading(true);
     subscribe
       .mutateAsync({
         email: form.email,
@@ -25,6 +27,9 @@ const Home: NextPage = () => {
       })
       .catch(() => {
         // TODO
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -67,7 +72,9 @@ const Home: NextPage = () => {
               type="email"
             />
           </fieldset>
-          <Button>Subscribe</Button>
+          <Button isLoading={isLoading}>
+            {isLoading ? "Subscribing..." : "Subscribe"}
+          </Button>
         </form>
       </main>
     </>
