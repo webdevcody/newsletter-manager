@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { DynamoDB, SES } from "aws-sdk";
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, localOnlyProcedure, publicProcedure } from "../trpc";
 import { v4 as uuidv4 } from "uuid";
 
 const ses = new SES({
@@ -66,7 +66,7 @@ export const subscriptionRouter = createTRPCRouter({
         message: "success",
       };
     }),
-  unsubscribe: publicProcedure
+  unsubscribe: localOnlyProcedure
     .input(z.object({ unsubscribeId: z.string() }))
     .mutation(async ({ input }) => {
       const subscription = await client
@@ -125,6 +125,7 @@ export const subscriptionRouter = createTRPCRouter({
       for (const subscription of filteredSubscriptions) {
         const unsubscribeLinkHtml = ` <a href="http://localhost:3000/unsubscribe/${subscription.unsubscribeId}" target="_blank;">Unsubscribe</a>`;
         const unsubscribeLinkText = ` Unsubscribe at http://localhost:3000/unsubscribe/${subscription.unsubscribeId}`;
+        console.time("sending email");
         await ses
           .sendEmail({
             Destination: {
@@ -150,6 +151,7 @@ export const subscriptionRouter = createTRPCRouter({
             Source: "WebDevCody Newsletter <newsletter@webdevcody.com>",
           })
           .promise();
+        console.timeEnd("sending email");
       }
       return {
         message: "success",

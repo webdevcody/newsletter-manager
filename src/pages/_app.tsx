@@ -10,14 +10,14 @@ import "../styles/globals.css";
 
 import { Sofia_Sans } from "@next/font/google";
 
-const sofia = Sofia_Sans({
+const mainFont = Sofia_Sans({
   subsets: ["latin"],
-  variable: "--font-sofia",
+  variable: "--font-main-font",
 });
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <main className={`${sofia.variable} bg-wdc-dark font-sans text-white`}>
+    <main className={`${mainFont.variable} bg-wdc-dark font-wdc text-white`}>
       <Component {...pageProps} />
     </main>
   );

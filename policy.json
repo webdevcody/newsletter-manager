@@ -1,0 +1,21 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": [
+        "ses:SendEmail",
+        "ses:SendRawEmail",
+        "dynamodb:PutItem",
+        "dynamodb:GetItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:Scan"
+      ],
+      "Resource": [
+        "arn:aws:ses:us-east-1:493255580566:identity/webdevcody.com",
+        "arn:aws:dynamodb:us-east-1:493255580566:table/webdevcody_newsletter"
+      ]
+    }
+  ]
+}

@@ -1,28 +1,35 @@
-# Create T3 App
+# Overview
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is the newsletter application I use for my youtube channel to send out updates to my subscriber.
 
-## What's next? How do I make an app with this?
+## Setup
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+### DynamoDB
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Create a Dynamodb table with the pk and sk named "pk" and "sk". Remember the name, you'll need it when setting up the user and policies.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+### SES
 
-## Learn More
+Setup SES for your domain and verify the identity. Keep track of this identity name since you'll need to update it in the `policy.json`
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+#### Request SES Production Access
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+Request production SES to get out of sandbox mode. You'll need to convince AWS you have a legit business reason to be sending emails.
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+### IAM User and Policy
 
-## How do I deploy this?
+Create an IAM user for programmatic access and setup your keys inside your .env file.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Modify the `policy.json` file and attach it to your user.
+
+## How to Run
+
+1. npm i
+2. npm run dev
+3. open http://localhost:3000
+
+## How to Send Emails
+
+1. open http://localhost:3000/compose
+2. enter your subject and body and click send
+3. watch your logs for when the endpoint is done sending out all the emails

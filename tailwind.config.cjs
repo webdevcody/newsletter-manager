@@ -14,7 +14,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-sofia)", ...fontFamily.sans],
+        wdc: ["var(--font-main-font)", ...fontFamily.sans],
       },
     },
   },

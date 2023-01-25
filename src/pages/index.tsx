@@ -49,7 +49,7 @@ const Home: NextPage = () => {
           <br /> WebDevCody Newsletter
         </h1>
 
-        <p className="max-w-screen-sm text-center text-xl">
+        <p className="text-wdc-secondary max-w-screen-sm text-center text-xl">
           Subscribe to my newsletter and receive weekly updates on any community
           projects we are starting, recently published videos, and updates on
           new tutorials and courses.
