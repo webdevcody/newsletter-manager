@@ -1,0 +1,32 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-image
+          border-radius="50%"
+          width="100px"
+          src="https://raw.githubusercontent.com/webdevcody/newsletter-manager/main/public/wdc.jpeg"
+        ></mj-image>
+
+        <mj-divider border-color="#2fdeed"></mj-divider>
+
+        <mj-text
+          line-height="30px"
+          font-size="20px"
+          color="#1c2026"
+          font-family="helvetica"
+        >
+          <h1 style="line-height: 50px">
+            Welcome to the WebDevCody Newsletter!
+          </h1>
+
+          <p>
+            If you received this email, you're all set to get future emails when
+            I publish weekly content updates, new courses, or useful learning
+            materials.
+          </p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

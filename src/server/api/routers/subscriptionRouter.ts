@@ -3,6 +3,7 @@ import { z } from "zod";
 import { DynamoDB, SES } from "aws-sdk";
 import { createTRPCRouter, localOnlyProcedure, publicProcedure } from "../trpc";
 import { v4 as uuidv4 } from "uuid";
+import { welcome } from "../../../data/welcome";
 
 const ses = new SES({
   region: process.env.REGION,
@@ -70,6 +71,31 @@ export const subscriptionRouter = createTRPCRouter({
           },
         })
         .promise();
+
+      await ses
+        .sendEmail({
+          Destination: {
+            ToAddresses: [input.email],
+          },
+          Message: {
+            Body: {
+              Html: {
+                Charset: "UTF-8",
+                Data: welcome,
+              },
+            },
+            Subject: {
+              Charset: "UTF-8",
+              Data: "Welcome to the WebDevCody Newsletter",
+            },
+          },
+          Source: "WebDevCody Newsletter <newsletter@webdevcody.com>",
+        })
+        .promise()
+        .catch((err) => {
+          console.error(err);
+        });
+
       return {
         message: "success",
       };
