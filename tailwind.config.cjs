@@ -1,8 +1,21 @@
-/** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
-  plugins: [require("daisyui")],
+  plugins: [],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        wdc: {
+          dark: "#1c2026",
+          light: "#31e7f7",
+          primary: "#2fdeed",
+        },
+      },
+      fontFamily: {
+        sans: ["var(--font-sofia)", ...fontFamily.sans],
+      },
+    },
   },
 };
