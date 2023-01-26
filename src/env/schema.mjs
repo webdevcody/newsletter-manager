@@ -6,11 +6,11 @@ import { z } from "zod";
  * This way you can ensure the app isn't built with invalid env vars.
  */
 export const serverSchema = z.object({
-  NODE_ENV: z.enum(["development", "test", "production"]),
+  NODE_ENV: z.enum(["local", "production"]),
   ACCESS_KEY: z.string(),
   SECRET_KEY: z.string(),
   REGION: z.string(),
-  HOSTNAME: z.string(),
+  HOST_NAME: z.string(),
   SES_ENDPOINT: z.string().optional(),
   DYNAMO_ENDPOINT: z.string().optional(),
 });
@@ -25,7 +25,7 @@ export const serverEnv = {
   ACCESS_KEY: process.env.ACCESS_KEY,
   SECRET_KEY: process.env.SECRET_KEY,
   REGION: process.env.REGION,
-  HOSTNAME: process.env.HOSTNAME,
+  HOST_NAME: process.env.HOST_NAME,
   SES_ENDPOINT: process.env.SES_ENDPOINT,
   DYNAMO_ENDPOINT: process.env.DYNAMO_ENDPOINT,
 };
