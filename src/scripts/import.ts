@@ -2,8 +2,12 @@ import { config } from "dotenv";
 config();
 import { DynamoDB } from "aws-sdk";
 import { v4 as uuidv4 } from "uuid";
-import emails from "./emails.json";
 import { TABLE_NAME } from "../server/api/persistence/dynamo";
+import fs from "fs";
+
+const emails = JSON.parse(
+  fs.readFileSync("./emails.json", "utf-8")
+) as string[];
 
 const client = new DynamoDB.DocumentClient({
   region: process.env.REGION,
