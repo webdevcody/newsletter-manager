@@ -7,6 +7,12 @@ import { z } from "zod";
  */
 export const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
+  ACCESS_KEY: z.string(),
+  SECRET_KEY: z.string(),
+  REGION: z.string(),
+  HOSTNAME: z.string(),
+  SES_ENDPOINT: z.string().optional(),
+  DYNAMO_ENDPOINT: z.string().optional(),
 });
 
 /**
@@ -16,6 +22,12 @@ export const serverSchema = z.object({
  */
 export const serverEnv = {
   NODE_ENV: process.env.NODE_ENV,
+  ACCESS_KEY: process.env.ACCESS_KEY,
+  SECRET_KEY: process.env.SECRET_KEY,
+  REGION: process.env.REGION,
+  HOSTNAME: process.env.HOSTNAME,
+  SES_ENDPOINT: process.env.SES_ENDPOINT,
+  DYNAMO_ENDPOINT: process.env.DYNAMO_ENDPOINT,
 };
 
 /**

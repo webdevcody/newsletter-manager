@@ -33,3 +33,7 @@ Modify the `policy.json` file and attach it to your user.
 1. open http://localhost:3000/compose
 2. enter your subject and body and click send
 3. watch your logs for when the endpoint is done sending out all the emails
+
+## Importing Emails
+
+If you have a list of existing emails you want to import, create a src/scripts/emails.json that contains an array of all the email address strings you want to import then run `npx ts-node src/scripts/import.ts`
