@@ -94,7 +94,7 @@ export const createTRPCRouter = t.router;
 export const publicProcedure = t.procedure;
 
 const isLocalOnly = t.middleware(({ ctx, next }) => {
-  if (process.env.NODE_ENV !== "local") {
+  if (process.env.ENABLE_COMPOSE !== "true") {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({ ctx });
