@@ -36,4 +36,4 @@ Modify the `policy.json` file and attach it to your user.
 
 ## Importing Emails
 
-If you have a list of existing emails you want to import, create a src/scripts/emails.json that contains an array of all the email address strings you want to import then run `npx ts-node src/scripts/import.ts`
+If you have a list of existing emails you want to import, create a src/scripts/emails.json that contains an array of all the email address strings you want to import then run `npx ts-node src/scripts/import.ts`.
