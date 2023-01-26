@@ -23,8 +23,8 @@ export async function sendEmail({
   textBody: string;
   unsubscribeId: string;
 }) {
-  const unsubscribeLinkHtml = ` <a href="${env.HOSTNAME}/unsubscribe/${unsubscribeId}" target="_blank;">Unsubscribe</a>`;
-  const unsubscribeTextHtml = ` You can unsubscribe here: ${env.HOSTNAME}/unsubscribe/${unsubscribeId}`;
+  const unsubscribeLinkHtml = ` <a href="${env.HOST_NAME}/unsubscribe/${unsubscribeId}" target="_blank;">Unsubscribe</a>`;
+  const unsubscribeTextHtml = ` You can unsubscribe here: ${env.HOST_NAME}/unsubscribe/${unsubscribeId}`;
 
   await ses
     .sendEmail({
