@@ -1,5 +1,6 @@
 import { SES } from "aws-sdk";
 import { env } from "../../../env/server.mjs";
+import throttledQueue from "throttled-queue";
 
 const ses = new SES({
   region: env.REGION,
@@ -10,7 +11,9 @@ const ses = new SES({
   endpoint: env.SES_ENDPOINT,
 });
 
-export async function sendEmail({
+const throttle = throttledQueue(5, 1000, true);
+
+export function sendEmail({
   email,
   htmlBody,
   subject,
@@ -26,32 +29,37 @@ export async function sendEmail({
   const unsubscribeLinkHtml = ` <a href="${env.HOST_NAME}/unsubscribe/${unsubscribeId}" target="_blank;">Unsubscribe</a>`;
   const unsubscribeTextHtml = ` You can unsubscribe here: ${env.HOST_NAME}/unsubscribe/${unsubscribeId}`;
 
-  await ses
-    .sendEmail({
-      Destination: {
-        ToAddresses: [email],
-      },
-      Message: {
-        Body: {
-          Html: {
-            Charset: "UTF-8",
-            Data: htmlBody + unsubscribeLinkHtml,
+  throttle(() => {
+    return ses
+      .sendEmail({
+        Destination: {
+          ToAddresses: [email],
+        },
+        Message: {
+          Body: {
+            Html: {
+              Charset: "UTF-8",
+              Data: htmlBody + unsubscribeLinkHtml,
+            },
+            Text: {
+              Charset: "UTF-8",
+              Data: textBody + unsubscribeTextHtml,
+            },
           },
-          Text: {
+          Subject: {
             Charset: "UTF-8",
-            Data: textBody + unsubscribeTextHtml,
+            Data: subject,
           },
         },
-        Subject: {
-          Charset: "UTF-8",
-          Data: subject,
-        },
-      },
-      Source: "WebDevCody Newsletter <newsletter@webdevcody.com>",
-    })
-    .promise()
-    .catch((err) => {
-      console.error(err);
-      throw err;
-    });
+        Source: "WebDevCody Newsletter <newsletter@webdevcody.com>",
+      })
+      .promise()
+      .catch((err) => {
+        console.error(err);
+        throw err;
+      });
+  }).catch((err) => {
+    console.error(err);
+    throw err;
+  });
 }
