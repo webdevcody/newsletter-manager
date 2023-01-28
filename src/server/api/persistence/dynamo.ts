@@ -1,10 +1,8 @@
 import { DynamoDB } from "aws-sdk";
-import { env } from "../../../env/server.mjs";
-
-export const TABLE_NAME = "webdevcody_newsletter";
+import { env, TABLE_NAME } from "../../../config/constants";
 
 const client = new DynamoDB.DocumentClient({
-  region: process.env.REGION,
+  region: env.REGION,
   credentials: {
     accessKeyId: env.ACCESS_KEY,
     secretAccessKey: env.SECRET_KEY,

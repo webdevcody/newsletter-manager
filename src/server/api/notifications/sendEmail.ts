@@ -1,6 +1,6 @@
 import { SES } from "aws-sdk";
-import { env } from "../../../env/server.mjs";
 import throttledQueue from "throttled-queue";
+import { env } from "../../../config/constants";
 
 const ses = new SES({
   region: env.REGION,
@@ -29,7 +29,7 @@ export function sendEmail({
   const unsubscribeLinkHtml = ` <a href="${env.HOST_NAME}/unsubscribe/${unsubscribeId}" target="_blank;">Unsubscribe</a>`;
   const unsubscribeTextHtml = ` You can unsubscribe here: ${env.HOST_NAME}/unsubscribe/${unsubscribeId}`;
 
-  throttle(() => {
+  return throttle(() => {
     return ses
       .sendEmail({
         Destination: {

@@ -1,8 +1,7 @@
 import { z } from "zod";
-import { createTRPCRouter, localOnlyProcedure, publicProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 import { subscribeUseCase } from "../useCases/subscribeUseCase";
 import { unsubscribeUseCase } from "../useCases/unsubscribeUseCase";
-import { composeUseCase } from "../useCases/composeUseCase";
 
 export const subscriptionRouter = createTRPCRouter({
   subscribe: publicProcedure
@@ -12,8 +11,4 @@ export const subscriptionRouter = createTRPCRouter({
   unsubscribe: publicProcedure
     .input(z.object({ unsubscribeId: z.string() }))
     .mutation(({ input }) => unsubscribeUseCase(input.unsubscribeId)),
-
-  compose: localOnlyProcedure
-    .input(z.object({ subject: z.string(), body: z.string() }))
-    .mutation(({ input }) => composeUseCase(input.subject, input.body)),
 });

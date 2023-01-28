@@ -3,7 +3,7 @@ import { config } from "dotenv";
 config();
 import { DynamoDB } from "aws-sdk";
 import DynamoDbLocal from "dynamodb-local";
-import { TABLE_NAME } from "../server/api/persistence/dynamo";
+import { TABLE_NAME } from "../config/constants";
 const dynamoLocalPort = 8000;
 
 const dynamo = new DynamoDB({

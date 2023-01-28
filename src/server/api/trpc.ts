@@ -51,7 +51,7 @@ export const createTRPCContext = (_opts: CreateNextContextOptions) => {
  * This is where the trpc api is initialized, connecting the context and
  * transformer
  */
-import { initTRPC, TRPCError } from "@trpc/server";
+import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
@@ -92,12 +92,3 @@ export const createTRPCRouter = t.router;
  * can still access user session data if they are logged in
  */
 export const publicProcedure = t.procedure;
-
-const isLocalOnly = t.middleware(({ ctx, next }) => {
-  if (process.env.ENABLE_COMPOSE !== "true") {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
-  }
-  return next({ ctx });
-});
-
-export const localOnlyProcedure = t.procedure.use(isLocalOnly);
