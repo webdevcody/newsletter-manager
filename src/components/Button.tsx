@@ -5,16 +5,18 @@ interface Props extends React.ComponentPropsWithoutRef<"button"> {
 }
 
 export function Button(props: Props) {
+  const { isLoading, ...rest } = props;
+
   return (
     <button
-      disabled={props.isLoading}
+      disabled={isLoading}
       className={classNames(
         "flex items-center justify-center gap-3 rounded-lg bg-wdc-primary p-3 text-lg text-black hover:bg-wdc-light disabled:bg-gray-500",
         props.className
       )}
-      {...props}
+      {...rest}
     >
-      {props.isLoading && (
+      {isLoading && (
         <>
           <svg
             aria-hidden="true"

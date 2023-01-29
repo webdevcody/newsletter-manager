@@ -16,7 +16,7 @@ const dynamo = new DynamoDB({
 });
 
 async function main() {
-  console.log("launching dynamo");
+  console.info("launching dynamo");
   const child = await DynamoDbLocal.launch(
     dynamoLocalPort,
     null,
@@ -25,7 +25,7 @@ async function main() {
     true
   );
 
-  console.log("should have created table");
+  console.info("should have created table");
   await dynamo
     .createTable({
       TableName: TABLE_NAME,
@@ -60,7 +60,7 @@ async function main() {
       await DynamoDbLocal.stopChild(child);
     });
 
-  console.log("done creating table");
+  console.info("done creating table");
 }
 
 main();

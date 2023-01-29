@@ -33,7 +33,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center gap-4">
-        {status}
+        <span data-testid="unsubscribe-status">{status}</span>
       </main>
     </>
   );

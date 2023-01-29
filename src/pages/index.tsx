@@ -1,5 +1,3 @@
-import { TRPCClientError } from "@trpc/client";
-import { DefaultErrorShape, TRPCError } from "@trpc/server";
 import classNames from "classnames";
 import { type NextPage } from "next";
 import Head from "next/head";

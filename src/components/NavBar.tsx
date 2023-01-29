@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { GlobeIcon } from "./icons/GlobeIcon";
 import { TwitchIcon } from "./icons/TwitchIcon";
 import { TwitterIcon } from "./icons/TwitterIcon";
@@ -8,7 +9,7 @@ export function NavBar() {
   return (
     <nav className="rounded border-gray-200 bg-white px-2 py-2.5 dark:bg-gray-900 sm:px-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
-        <a href="/" className="flex items-center gap-4 ">
+        <Link href="/" className="flex items-center gap-4 ">
           <Image
             height="50"
             width="50"
@@ -19,7 +20,7 @@ export function NavBar() {
           <span className="self-center whitespace-nowrap text-xl font-semibold text-white hover:text-wdc-primary">
             WebDevCody Newsletter
           </span>
-        </a>
+        </Link>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
@@ -38,7 +39,7 @@ export function NavBar() {
             <path
               fillRule="evenodd"
               d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </button>
