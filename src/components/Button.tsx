@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-interface Props extends React.HTMLProps<HTMLButtonElement> {
+interface Props extends React.ComponentPropsWithoutRef<"button"> {
   isLoading?: boolean;
 }
 
@@ -12,6 +12,7 @@ export function Button(props: Props) {
         "flex items-center justify-center gap-3 rounded-lg bg-wdc-primary p-3 text-lg text-black hover:bg-wdc-light disabled:bg-gray-500",
         props.className
       )}
+      {...props}
     >
       {props.isLoading && (
         <>

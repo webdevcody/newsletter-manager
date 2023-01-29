@@ -2,8 +2,8 @@ import { config } from "dotenv";
 config();
 import { DynamoDB } from "aws-sdk";
 import { v4 as uuidv4 } from "uuid";
-import { TABLE_NAME } from "../server/api/persistence/dynamo";
 import fs from "fs";
+import { TABLE_NAME } from "../config/constants";
 
 const emails = JSON.parse(
   fs.readFileSync("./emails.json", "utf-8")

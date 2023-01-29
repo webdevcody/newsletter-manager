@@ -74,12 +74,16 @@ const Home: NextPage = () => {
               onChange={(e) => setForm({ email: e.currentTarget.value })}
               id="email"
               name="email"
+              data-testid="email-input"
               required
               type="email"
             />
             <span className="text-red-400">{emailError}</span>
           </fieldset>
-          <Button isLoading={subscribe.isLoading}>
+          <Button
+            data-testid="subscribe-button"
+            isLoading={subscribe.isLoading}
+          >
             {subscribe.isLoading ? "Subscribing..." : "Subscribe"}
           </Button>
         </form>

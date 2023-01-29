@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 config();
 import { exec } from "child_process";
-import { mkdirSync, readdirSync, rmSync } from "fs";
+import { mkdirSync, readdirSync, readFileSync, rmSync } from "fs";
 import { subscribeUseCase } from "../src/server/api/useCases/subscribeUseCase";
 
 /**
@@ -11,8 +11,12 @@ describe("sendEmails command line tool", () => {
   it("should send out emails to the expected subscribed emails in our database", async () => {
     rmSync("./output", { recursive: true, force: true });
     mkdirSync("./output");
-    await subscribeUseCase("webdevcody@gmail.com");
-    await subscribeUseCase("bob@example.com");
+
+    const subscriberEmails = ["webdevcody@gmail.com", "bob@example.com"];
+
+    for (const email of subscriberEmails) {
+      await subscribeUseCase(email);
+    }
 
     await new Promise<void>((resolve, reject) =>
       exec(
@@ -26,7 +30,19 @@ describe("sendEmails command line tool", () => {
 
     const [dir] = readdirSync("./output");
     if (!dir) throw new Error("no emails sent");
-    const emails = readdirSync(`./output/${dir}`);
-    expect(emails.length).toEqual(2);
+    const emailDirectory = readdirSync(`./output/${dir}`);
+    expect(emailDirectory.length).toEqual(2);
+
+    const allHeadersContent = emailDirectory.map((directory) =>
+      readFileSync(`./output/${dir}/${directory}/headers.txt`, "utf-8")
+    );
+
+    subscriberEmails.forEach((email) => {
+      expect(
+        allHeadersContent.some((content) =>
+          content.includes(`To Address: ${email}\n`)
+        )
+      ).toBe(true);
+    });
   });
 });
