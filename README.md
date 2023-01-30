@@ -16,7 +16,7 @@ unfortunatley, cypress open will require you to install the node_modules:
 
 ## How to Send Emails
 
-1. `ts-node ./src/scripts/sendEmailsCli.ts "welcome to the jungle" "./src/data/emails/welcome.mjml"`
+1. `npx ts-node ./src/scripts/sendEmailsCli.ts "welcome to the jungle" "./src/data/emails/welcome.mjml"`
 
 ## Importing Emails to Prod
 

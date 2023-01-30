@@ -30,6 +30,7 @@ export function sendEmail({
   const unsubscribeTextHtml = ` You can unsubscribe here: ${env.HOST_NAME}/unsubscribe/${unsubscribeId}`;
 
   return throttle(() => {
+    console.info(`sending email to ${email}`);
     return ses
       .sendEmail({
         Destination: {

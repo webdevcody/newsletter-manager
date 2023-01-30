@@ -10,6 +10,7 @@ import "../styles/globals.css";
 
 import { Sofia_Sans } from "@next/font/google";
 import { NavBar } from "../components/NavBar";
+import { Footer } from "../components/Footer";
 
 const mainFont = Sofia_Sans({
   subsets: ["latin"],
@@ -21,6 +22,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <main className={`${mainFont.variable} bg-wdc-dark font-wdc text-white`}>
       <NavBar />
       <Component {...pageProps} />
+      <Footer />
     </main>
   );
 };

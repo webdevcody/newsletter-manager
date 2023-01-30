@@ -24,6 +24,7 @@ export async function sendEmails({
     );
   }
   const mjmlToConvert = readFile(mjmlFilePath);
+  const text = readFile(mjmlFilePath.replace(".mjml", ".txt"));
   const { html } = mjml2html(mjmlToConvert);
-  await sendNewsletterUseCase({ subject, body: html });
+  await sendNewsletterUseCase({ subject, body: html, text });
 }

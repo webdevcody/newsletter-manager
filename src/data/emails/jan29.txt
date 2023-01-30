@@ -1,0 +1,52 @@
+The First Email
+Since this is my first newsletter email, I want to start by saying thank you all so much for subscribing to my channel. I'm happy to know that my content has not only helped many of you learn to code but also some have said they have landed internships and jobs from watching my videos.
+
+So what is the purpose of this newsletter? To be honest, I don't know yet, but I plan to hopefully use it as another way to send you all updates on my channel, links to useful resources, maybe links to exclusive videos I may record, and also maybe some little tips and tricks related to coding or the tech stack I'm currently using (typescript, tailwind, next, react, etc).
+
+If you don't find this content useful, you can unsubscribe using the link at the bottom of this email, but I would ask you to give me some feedback if you think of ways I could provide more value to y'all using this newsletter.
+
+What have I been up to?
+This week I've been focusing on building up my brand and trying to put more effort into marketing my channel. I set up a twitch channel channel which I've been multicast streaming to when I do my normal youtube streams, so be sure to follow if you like watching streams on twitch.
+
+As you already know, I recently changed my channel brand from Web Dev Junkie to Web Dev Cody. The main reason was I wanted to get my name in my channel and decided to do it before I got to 100k subscribers. Also, the word Junkie doesn't have the best connotation and isn't that respectful for people will real drug addiction issues.
+
+Another approach I'm taking to growing my brand is working on a personal website which I may use as a portfolio and maybe adding a blog where I can also publish some of these newsletter updates if that might be interesting to read for y'all.
+
+My personal site using Astro
+I've been hearing some good things about Astro, so I decided to set up a personal website using Astro. I will be honest, I only created a single page with the Astro site, but overall I think this framework is easier to work with compared to Next.js. Don't get me wrong, next.js is a great framework, but it can be a little confusing to learn at first. If you're looking into a simple way to create statically generated sites, Astro might be your solution. It has the power to create minimal webpages that contain zero javascript unless you manually add in interactivity.
+
+I also decided to deploy this site using AWS Amplify. Amplify is another piece of technology I hear a lot about, and I use many AWS services at work so I figured I'd give it a try. Amplify isn't as user-friendly as something like vercel or railway, but it will build and deploy your next application to the CloudFront CDN which means your static files will load fast for your users. It's also really cheap to deploy using amplify.
+
+You can watch my video of me talking about how I hosted my astro site using AWS amplify the following video 
+
+Making my newsletter production ready
+I published two live streams this week where I worked on adding some integration and e2e cypress tests on my newsletter application.
+
+Learning how to write tests is critical for building quality software applications. When you're on a large team of engineers who are committing code multiple times daily, it is very easy to accidentally break a feature for your users. Some projects may have a dedicated QA team to review changes, but this can often cause slowdowns in your deployment process. Automated tests, written by the developers who add the features, intend to run similar checks against a local or deployed application to verify the correctness of the website.
+
+I use cypress at work since I find it easy to use, but there is also another testing framework called playwright which I hear great things about. I'll try to experiment with playwright testing when I get some time. For my integration and unit tests, I plan to use Jest since that is what I'm used to, but I also hear vitest is a very fast testing framework that might be worth transitioning to due to performance reasons.
+
+If you are interested in learning more about testing with jest or cypress, be sure to check out my first live stream.
+
+
+and second live stream.
+
+
+The Importance of Problem Solving
+When you are first learning how to code, there are many challenges you will have to overcome. For example, there are new things I encountered while trying to build out this newsletter application. Styling HTML emails is very difficult, so thankfully I stumbled upon something called MJML which helps you write email templates that convert to HTML. A lot of the problems I encountered can be solved by following a simple approach of breaking the problem down into small problems.
+
+All software involves problem-solving. Some of the problems have been solved by others, but you'll still need to search google for those solutions and piece the puzzles together. Sometimes you'll run into problems you have to solve yourself. Overall, the only way to get great at coding is to practice solving more and more problems until most problems you encounter are ones you've solved in the past.
+
+Most larger problems are made up of smaller sub-problems. Check out the following video to get a better understanding of how to break down a problem
+
+
+Our community Dungeon Crawler is coming along
+For those who don't know, I've been trying to spend some time this week working on a dungeon crawler game with some other discord users. I've always wanted to finish one game, so I'm hoping this project can at least get to an MVP state where some subscribers can play and have some fun playing. The main focus I've been working on is the inventory system to allow users to pick up items, drop items, use items, and equip items. I plan to add in the ability for players to equip certain types of items this week, so stay tuned for an updated video related.
+
+To follow along with this project, be sure to check out my video where I start working on the inventory system
+
+
+Stay tuned for updates
+That was a short update with the things I've been working on and just some random thoughts on the software. If you have feedback for me regarding this newsletter, feel free to join my discord and send me a message.
+
+Have a good day and happy coding!

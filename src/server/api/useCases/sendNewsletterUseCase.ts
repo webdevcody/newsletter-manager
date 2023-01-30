@@ -6,19 +6,20 @@ export type TSendNewsletterUseCase = typeof sendNewsletterUseCase;
 export async function sendNewsletterUseCase({
   subject,
   body,
+  text,
 }: {
   subject: string;
   body: string;
+  text: string;
 }) {
   const subscriptions = await getSubscriptions();
 
   await Promise.all(
     subscriptions.map((subscription) => {
-      console.info(`sending email to ${subscription.email}`);
       return sendEmail({
         email: subscription.email,
         htmlBody: body,
-        textBody: "TODO",
+        textBody: text,
         unsubscribeId: subscription.unsubscribeId,
         subject,
       });
