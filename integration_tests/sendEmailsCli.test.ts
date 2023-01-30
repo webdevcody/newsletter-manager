@@ -3,6 +3,7 @@ config();
 import { exec } from "child_process";
 import { mkdirSync, readdirSync, readFileSync, rmSync } from "fs";
 import { subscribeUseCase } from "../src/server/api/useCases/subscribeUseCase";
+import { expect, describe, it } from "@jest/globals";
 
 /**
  * this test expects the entire local app to be running

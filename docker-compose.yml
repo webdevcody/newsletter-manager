@@ -1,0 +1,50 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: .
+    container_name: next
+    ports:
+      - "3000:3000"
+    entrypoint: ["npm", "run", "dev"]
+    volumes:
+      - .:/home/app
+      - /home/app/node_modules
+
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+
+  dynamo-setup:
+    build:
+      context: .
+    container_name: dynamo-setup
+    depends_on:
+      - dynamodb-local
+    restart: "no"
+
+    entrypoint: ["npm", "run", "dynamo:setup"]
+    volumes:
+      - .:/home/app
+      - /home/app/node_modules
+
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - "8001:8001"
+    environment:
+      DYNAMO_ENDPOINT: "http://dynamodb-local:8000"
+      AWS_REGION: "us-east-1"
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+    depends_on:
+      - dynamodb-local
+
+  ses-local:
+    image: jdelibas/aws-ses-local
+    ports:
+      - "9001:9001"
+    volumes:
+      - "./output:/aws-ses-local/output"

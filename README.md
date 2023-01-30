@@ -2,9 +2,29 @@
 
 This is the newsletter application I use for my youtube channel to send out updates to my subscriber.
 
-## Setup
+## How to Run
 
-### DynamoDB
+1. npm i
+1. docker-compose up
+1. open http://localhost:3000
+
+## Running Cypress
+
+unfortunatley, cypress open will require you to install the node_modules:
+
+1. npm run cypress:open
+
+## How to Send Emails
+
+1. `ts-node ./src/scripts/sendEmailsCli.ts "welcome to the jungle" "./src/data/emails/welcome.mjml"`
+
+## Importing Emails to Prod
+
+1. update .env to have prod info
+2. create a `src/scripts/emails.json` with array of email address
+3. run `npx ts-node src/scripts/import.ts`
+
+## Deployment
 
 Create a Dynamodb table with the pk and sk named "pk" and "sk". Remember the name, you'll need it when setting up the user and policies.
 
@@ -21,19 +41,3 @@ Request production SES to get out of sandbox mode. You'll need to convince AWS y
 Create an IAM user for programmatic access and setup your keys inside your .env file.
 
 Modify the `policy.json` file and attach it to your user.
-
-## How to Run
-
-1. npm i
-2. npm run dev
-3. open http://localhost:3000
-
-## How to Send Emails
-
-1. open http://localhost:3000/compose
-2. enter your subject and body and click send
-3. watch your logs for when the endpoint is done sending out all the emails
-
-## Importing Emails
-
-If you have a list of existing emails you want to import, create a src/scripts/emails.json that contains an array of all the email address strings you want to import then run `npx ts-node src/scripts/import.ts`

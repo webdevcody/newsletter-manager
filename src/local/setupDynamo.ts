@@ -2,9 +2,7 @@
 import { config } from "dotenv";
 config();
 import { DynamoDB } from "aws-sdk";
-import DynamoDbLocal from "dynamodb-local";
 import { TABLE_NAME } from "../config/constants";
-const dynamoLocalPort = 8000;
 
 const dynamo = new DynamoDB({
   region: process.env.REGION,
@@ -16,16 +14,11 @@ const dynamo = new DynamoDB({
 });
 
 async function main() {
-  console.info("launching dynamo");
-  const child = await DynamoDbLocal.launch(
-    dynamoLocalPort,
-    null,
-    [],
-    false,
-    true
-  );
-
-  console.info("should have created table");
+  console.info("creating table");
+  console.log(process.env.REGION);
+  console.log(process.env.ACCESS_KEY);
+  console.log(process.env.SECRET_KEY);
+  console.log(process.env.DYNAMO_ENDPOINT);
   await dynamo
     .createTable({
       TableName: TABLE_NAME,
@@ -57,7 +50,6 @@ async function main() {
     .promise()
     .catch(async (err) => {
       console.error(err);
-      await DynamoDbLocal.stopChild(child);
     });
 
   console.info("done creating table");
