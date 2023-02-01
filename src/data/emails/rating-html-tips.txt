@@ -1,0 +1,29 @@
+Just Learn HTML and CSS!
+
+So, you're new to web development and overwhelmed with how much there is to learn. Many people online regurgitate the same "just learn HTML and CSS." How much should you learn? When do you know you've learned enough before progressing to complex topics like vanilla javascript and front-end frameworks like React?
+
+My rule of thumb for when you know enough HTML and CSS is pretty simple: when you can look at many websites or even the widgets that make up the website and confidently state, "yeah, I can build this," then you're at the point where it's time to progress into more complex topics.
+
+Why do I say this should be your goal? Well, when working as a professional web developer, you'll often work with graphic designers or user experience members who create design mock-ups or design proofs. Your job is to take these designs and convert them to code. The more efficient you can get at doing a task like this, the better you'll become as a front-end developer.
+
+A great way to improve with HTML and CSS is to follow this same pattern done in the industry by trying to replicate existing designs. Let's take this rating widget as an example below taken from frontendmentor.io: 
+
+This widget is pretty simple, but for a beginner, there are many new things you'll need to understand. How do you evenly space out buttons? How do I add hover effects on these buttons? How do I add a rounded gray background to images? How do I make a panel with rounded corners?
+
+Figuring out how to build these widgets usually always breaks down to knowing how to solve the smaller individual questions we talked about above. For example, the better you get at identifying you can use border-radius to round corners or make circles, creating this panel becomes less intimidating.
+
+Since this is a newsletter to help give tips related to web development, I might as well explain some of the css properties you can use to style this widget:
+
+border-radius: 50% - a great way to make elements circle
+border-radius: 20px - a way to round the edges on elements
+:hover - a pseudo-class styling a elements on hover
+:focus - a pseudo-class for changing the style of elements when focused
+padding: 20px - add some internal padding to the element to move content away from the edges
+background: blue - to make an elements background color blue
+display: flex - a way to change the layout of children inside an container
+justify-content: space-between - a way to add equal space between the children of the flex container
+flex-direction: column - change the axis of the flex container to instead be verical
+text-align: center - center all text and images in the center of the container
+Those are just a few of the css properties needed to build out this widget, but the point I'm trying to make is this: solve more problems. It'll help you improve at identifying which properties and pseudo-classes you can use style your widgets and webpages. The more things you build, the more of these properties you will commit to memory so that the next time you need to center an element or round a corner it'll be muscle memory.
+
+If you're interested in watching me implement this widget myself, be sure to checkout my youtube video: https://www.youtube.com/watch?v=mp1-HUjZE0o and my channel https://youtube.com/@webdevcody

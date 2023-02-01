@@ -52,6 +52,7 @@ export function sendEmail({
             Data: subject,
           },
         },
+        ReturnPath: "webdevcody@gmail.com",
         Source: "WebDevCody Newsletter <newsletter@webdevcody.com>",
       })
       .promise()
