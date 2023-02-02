@@ -1,15 +1,42 @@
 version: "3.7"
 services:
-  app:
+  ui:
     build:
       context: .
-    container_name: next
+    container_name: ui
     ports:
       - "3000:3000"
-    entrypoint: ["npm", "run", "dev"]
+    entrypoint: ["npm", "run", "-w", "ui", "dev"]
+    environment:
+      REGION: us-east-1
+      ACCESS_KEY: local
+      SECRET_KEY: local
+      SES_ENDPOINT: http://ses-local:9001
+      DYNAMO_ENDPOINT: http://dynamodb-local:8000
+      HOST_NAME: http://localhost:3000
+      NEXT_PUBLIC_API_URL: http://localhost:3010/prod
     volumes:
       - .:/home/app
       - /home/app/node_modules
+
+  # api:
+  #   build:
+  #     context: .
+  #   container_name: api
+  #   ports:
+  #     - "3010:3010"
+  #   entrypoint: ["npm", "run", "-w", "api", "dev"]
+  #   environment:
+  #     REGION: us-east-1
+  #     ACCESS_KEY: local
+  #     SECRET_KEY: local
+  #     SES_ENDPOINT: http://ses-local:9001
+  #     DYNAMO_ENDPOINT: http://dynamodb-local:8000
+  #     HOST_NAME: http://localhost:3000
+  #   volumes:
+  #     - .:/home/app
+  #     - /home/app/node_modules
+  #     - /home/app/api/.build
 
   dynamodb-local:
     image: amazon/dynamodb-local:latest
@@ -21,11 +48,15 @@ services:
     build:
       context: .
     container_name: dynamo-setup
+    environment:
+      DYNAMO_ENDPOINT: "http://dynamodb-local:8000"
+      REGION: "us-east-1"
+      ACCESS_KEY: local
+      SECRET_KEY: local
     depends_on:
       - dynamodb-local
     restart: "no"
-
-    entrypoint: ["npm", "run", "dynamo:setup"]
+    entrypoint: ["npm", "run", "-w", "business", "dynamo:setup"]
     volumes:
       - .:/home/app
       - /home/app/node_modules

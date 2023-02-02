@@ -1,0 +1,27 @@
+# serverless.yml
+
+service: wdc-newsletter-api
+
+plugins:
+  - serverless-plugin-monorepo
+  - serverless-plugin-typescript
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 3010
+    host: 0.0.0.0
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: prod
+  region: us-east-1
+
+functions:
+  app:
+    handler: src/index.handler
+    events:
+      - http:
+          method: ANY
+          path: /{proxy+}

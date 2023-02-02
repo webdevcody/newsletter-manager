@@ -1,0 +1,22 @@
+{
+  "name": "@wdc-newsletter/business",
+  "version": "1.0.0",
+  "description": "all business related logic for the newsletter",
+  "main": "src/index.ts",
+  "scripts": {
+    "dynamo:setup": "ts-node src/local/setupDynamo.ts"
+  },
+  "keywords": [],
+  "author": "Cody Seibert",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.1306.0",
+    "throttled-queue": "^2.1.4",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@types/uuid": "^9.0.0",
+    "ts-node": "^10.9.1"
+  }
+}

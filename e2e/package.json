@@ -1,0 +1,19 @@
+{
+  "name": "@wdc-newsletter/e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "keywords": [],
+  "author": "Cody Seibert",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^12.5.0"
+  },
+  "dependencies": {
+    "@wdc-newsletter/business": "*",
+    "typescript": "^4.9.5"
+  }
+}

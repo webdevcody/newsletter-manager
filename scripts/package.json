@@ -1,0 +1,21 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Cody Seibert",
+  "license": "MIT",
+  "devDependencies": {
+    "@jest/globals": "^29.4.1",
+    "@types/node": "^18.11.18"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1306.0",
+    "dotenv": "^16.0.3",
+    "uuid": "^9.0.0"
+  }
+}

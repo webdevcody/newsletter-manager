@@ -1,0 +1,7 @@
+- unit tests
+- sns + auto delete bounced subscriptions
+- know if user opened email
+- dashboard to view recently published newsletter
+- aws cdk for AWS setup
+- github actions
+- convert to SST instead of vercel
