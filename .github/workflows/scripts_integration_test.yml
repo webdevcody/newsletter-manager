@@ -15,4 +15,4 @@ jobs:
           docker-compose up -d --build
 
       - name: Run tests
-        run: docker exec -it shell sh -c "yarn workspace @wdc-newsletter/scripts test:integration && exit $?"
+        run: docker exec shell sh -c "yarn workspace @wdc-newsletter/scripts test:integration && exit $?"
