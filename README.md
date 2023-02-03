@@ -8,6 +8,10 @@ This is the newsletter application I use for my youtube channel to send out upda
 1. docker-compose up
 1. open http://localhost:3000
 
+## Connect to Shell container
+
+`docker exec -it shell /bin/bash`
+
 ## Running Cypress
 
 unfortunatley, cypress open will require you to install the node_modules:

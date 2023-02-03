@@ -1,5 +1,22 @@
 version: "3.7"
 services:
+  shell:
+    build:
+      context: .
+    container_name: shell
+    tty: true
+    environment:
+      REGION: us-east-1
+      ACCESS_KEY: local
+      SECRET_KEY: local
+      SES_ENDPOINT: http://ses-local:9001
+      DYNAMO_ENDPOINT: http://dynamodb-local:8000
+      HOST_NAME: http://localhost:3000
+      NEXT_PUBLIC_API_URL: http://localhost:3010
+    volumes:
+      - .:/home/app
+      - /home/app/node_modules
+
   ui:
     build:
       context: .

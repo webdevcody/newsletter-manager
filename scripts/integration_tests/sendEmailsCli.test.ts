@@ -1,9 +1,12 @@
 import { exec } from "child_process";
 import { mkdirSync, readdirSync, readFileSync, rmSync } from "fs";
+import fsExtra from "fs-extra";
 import {
   getSubscriptionByEmailFactory,
   saveSubscriptionFactory,
+  sendEmailFactory,
   subscribeUseCase,
+  TSesConfig,
 } from "@wdc-newsletter/business";
 import { expect, describe, it } from "@jest/globals";
 import { TDynamoConfig } from "@wdc-newsletter/business/src/persistence/dynamo";
@@ -11,19 +14,29 @@ import { TDynamoConfig } from "@wdc-newsletter/business/src/persistence/dynamo";
 const OUTPUT_EMAIL_FILE_PATH = "../output";
 
 const dynamoConfig: TDynamoConfig = {
-  region: "us-east-1",
-  accessKeyId: "local",
-  secretAccessKey: "local",
-  endpoint: "http://localhost:8000",
+  region: process.env.REGION,
+  accessKeyId: process.env.ACCESS_KEY,
+  secretAccessKey: process.env.SECRET_KEY,
+  endpoint: process.env.DYNAMO_ENDPOINT,
+};
+
+const sesConfig: TSesConfig = {
+  region: process.env.REGION,
+  accessKeyId: process.env.ACCESS_KEY,
+  secretAccessKey: process.env.SECRET_KEY,
+  endpoint: process.env.SES_ENDPOINT,
 };
 
 /**
  * This integration test expects the docker-compose to be up.
  */
 describe("sendEmails command line tool", () => {
+  beforeEach(() => {
+    jest.setTimeout(30000);
+  });
+
   it("should send out emails to the expected subscribed emails in our database", async () => {
-    rmSync(OUTPUT_EMAIL_FILE_PATH, { recursive: true, force: true });
-    mkdirSync(OUTPUT_EMAIL_FILE_PATH);
+    fsExtra.emptyDirSync(OUTPUT_EMAIL_FILE_PATH);
 
     const subscriberEmails = ["webdevcody@gmail.com", "bob@example.com"];
 

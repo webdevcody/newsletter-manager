@@ -18,6 +18,7 @@
     "@wdc-newsletter/business": "*",
     "aws-sdk": "^2.1306.0",
     "dotenv": "^16.0.3",
+    "fs-extra": "^11.1.0",
     "mjml": "^4.13.0",
     "uuid": "^9.0.0"
   }
