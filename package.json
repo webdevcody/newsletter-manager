@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "deploy:ui": "yarn workspace @wdc-newsletter/ui build && cd infra/ui && amplify publish --yes",
-    "deploy:api": "cd api && serverless deploy",
+    "deploy:api": "yarn workspace @wdc-newsletter/api deploy",
     "cypress:open": "cypress open"
   },
   "workspaces": {

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-export $(cat .env | xargs)
+export $(cat $1 | xargs)
