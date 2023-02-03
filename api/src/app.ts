@@ -51,6 +51,10 @@ app.use(
   })
 );
 
+app.get("/status", async function (req: Request, res: Response) {
+  res.send("ok");
+});
+
 app.post("/subscriptions", async function (req: Request, res: Response) {
   await subscribeUseCase(
     {
