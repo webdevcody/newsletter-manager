@@ -1,18 +1,22 @@
-import { put } from "./dynamo";
+import { put, TDynamoConfig } from "./dynamo";
 
-export async function saveSubscription(email: string, unsubscribeId: string) {
-  await Promise.all([
-    put({
-      pk: `email|${email}`,
-      sk: `email|${email}`,
-      email,
-      unsubscribeId,
-    }),
-    put({
-      pk: `subscription|${unsubscribeId}`,
-      sk: `subscription|${unsubscribeId}`,
-      email,
-      unsubscribeId,
-    }),
-  ]);
+export type TSaveSubscription = ReturnType<typeof saveSubscriptionFactory>;
+
+export function saveSubscriptionFactory(config: TDynamoConfig) {
+  return async (email: string, unsubscribeId: string) => {
+    await Promise.all([
+      put(config, {
+        pk: `email|${email}`,
+        sk: `email|${email}`,
+        email,
+        unsubscribeId,
+      }),
+      put(config, {
+        pk: `subscription|${unsubscribeId}`,
+        sk: `subscription|${unsubscribeId}`,
+        email,
+        unsubscribeId,
+      }),
+    ]);
+  };
 }
