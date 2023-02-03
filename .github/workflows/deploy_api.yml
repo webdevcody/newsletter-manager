@@ -5,7 +5,8 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  deploy_api:
+    needs: deploy_infra
     runs-on: ubuntu-latest
     environment:
       name: production

@@ -4,10 +4,7 @@
   "description": "",
   "private": true,
   "main": "index.js",
-  "scripts": {
-    "deploy:api": "yarn workspace @wdc-newsletter/api deploy",
-    "cypress:open": "cypress open"
-  },
+  "scripts": {},
   "workspaces": {
     "packages": [
       "business",

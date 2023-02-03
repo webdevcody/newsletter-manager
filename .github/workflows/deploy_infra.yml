@@ -1,0 +1,23 @@
+name: Deploy - Infra
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy_infra:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run Docker Compose
+        run: |
+          docker-compose build
+
+      - name: Run terraform
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: docker exec shell sh -c "cd infra && terraform init && terraform apply -auto-approve && exit $?"
