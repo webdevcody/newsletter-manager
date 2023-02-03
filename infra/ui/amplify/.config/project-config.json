@@ -1,0 +1,15 @@
+{
+  "projectName": "wdcnewsletterui",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "react",
+    "config": {
+      "SourceDir": "../../ui/src",
+      "DistributionDir": "../../ui/out",
+      "BuildCommand": "cd ../../ui && yarn build",
+      "StartCommand": "yarn start"
+    }
+  },
+  "providers": ["awscloudformation"]
+}

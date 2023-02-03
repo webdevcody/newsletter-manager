@@ -6,5 +6,5 @@ export const env = {
   HOST_NAME: process.env.HOST_NAME!,
   SES_ENDPOINT: process.env.SES_ENDPOINT!,
   DYNAMO_ENDPOINT: process.env.DYNAMO_ENDPOINT!,
-  TABLE_NAME: process.env.TABLE_NAME! ?? "webdevcody_newsletter",
+  TABLE_NAME: process.env.TABLE_NAME || "webdevcody_newsletter",
 };

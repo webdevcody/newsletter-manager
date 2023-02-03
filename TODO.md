@@ -5,3 +5,6 @@
 - aws cdk for AWS setup
 - github actions
 - convert to SST instead of vercel
+- make infra/api dir
+- make infra/data dir
+- nodemon for api

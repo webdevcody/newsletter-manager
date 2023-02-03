@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 config();
 import { sendEmails } from "./sendEmails";
-import { sendNewsletterUseCase } from "../server/api/useCases/sendNewsletterUseCase";
+import { sendNewsletterUseCase } from "@wdc-newsletter/business";
 import fs from "fs";
 
 sendEmails({

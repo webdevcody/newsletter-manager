@@ -2,16 +2,22 @@
   "name": "newsletter-manager",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
+    "deploy:ui": "yarn workspace @wdc-newsletter/ui build && cd infra/ui && amplify publish --yes",
+    "deploy:api": "cd api && serverless deploy",
     "cypress:open": "cypress open"
   },
-  "workspaces": [
-    "business",
-    "ui",
-    "e2e",
-    "api"
-  ],
+  "workspaces": {
+    "packages": [
+      "business",
+      "ui",
+      "e2e",
+      "api",
+      "scripts"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/webdevcody/newsletter-manager.git"
@@ -24,6 +30,7 @@
   },
   "homepage": "https://github.com/webdevcody/newsletter-manager#readme",
   "devDependencies": {
+    "@aws-amplify/cli": "^10.6.2",
     "cypress": "^12.5.0"
   }
 }

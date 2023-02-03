@@ -1,5 +1,5 @@
 {
-  "name": "scripts",
+  "name": "@wdc-newsletter/scripts",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,8 +14,10 @@
     "@types/node": "^18.11.18"
   },
   "dependencies": {
+    "@wdc-newsletter/business": "*",
     "aws-sdk": "^2.1306.0",
     "dotenv": "^16.0.3",
+    "mjml": "^4.13.0",
     "uuid": "^9.0.0"
   }
 }

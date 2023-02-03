@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-wdcnewsletterui-dev-03732-authRole",
+      "UnauthRoleArn": "arn:aws:iam::493255580566:role/amplify-wdcnewsletterui-dev-03732-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::493255580566:role/amplify-wdcnewsletterui-dev-03732-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-wdcnewsletterui-dev-03732-deployment",
+      "UnauthRoleName": "amplify-wdcnewsletterui-dev-03732-unauthRole",
+      "StackName": "amplify-wdcnewsletterui-dev-03732",
+      "StackId": "arn:aws:cloudformation:us-east-1:493255580566:stack/amplify-wdcnewsletterui-dev-03732/b1d713c0-a2bb-11ed-91cc-0a24ac226011",
+      "AmplifyAppId": "d2cylbtyalpb2e"
+    },
+    "categories": {
+      "hosting": {
+        "S3AndCloudFront": {}
+      }
+    }
+  }
+}

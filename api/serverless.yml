@@ -4,19 +4,36 @@ service: wdc-newsletter-api
 
 plugins:
   - serverless-plugin-monorepo
-  - serverless-plugin-typescript
-  - serverless-offline
+  - serverless-esbuild
+  - serverless-domain-manager
 
 custom:
-  serverless-offline:
-    httpPort: 3010
-    host: 0.0.0.0
+  esbuild:
+    bundle: true
+    minify: false
+
+  customDomain:
+    domainName: newsletter-api.webdevcody.com
+    basePath: ""
+    stage: ${self:provider.stage}
+    certificateName: "newsletter-api.webdevcody.com"
+    createRoute53Record: false
+    endpointType: regional
 
 provider:
   name: aws
   runtime: nodejs16.x
   stage: prod
   region: us-east-1
+
+  environment:
+    ACCESS_KEY: ${env:ACCESS_KEY}
+    SECRET_KEY: ${env:SECRET_KEY}
+    REGION: ${env:REGION}
+    SES_ENDPOINT: ${env:SES_ENDPOINT}
+    DYNAMO_ENDPOINT: ${env:DYNAMO_ENDPOINT}
+    HOST_NAME: ${env:HOST_NAME}
+    TABLE_NAME: ${env:TABLE_NAME}
 
 functions:
   app:

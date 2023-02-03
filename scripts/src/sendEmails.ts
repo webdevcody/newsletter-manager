@@ -1,5 +1,5 @@
 import mjml2html from "mjml";
-import { type TSendNewsletterUseCase } from "../server/api/useCases/sendNewsletterUseCase";
+import { type TSendNewsletterUseCase } from "@wdc-newsletter/business";
 
 export async function sendEmails({
   getArguments,

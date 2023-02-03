@@ -11,6 +11,10 @@ export function useSubscribe() {
       headers: {
         "Content-Type": "application/json",
       },
+    }).then((response) => {
+      if (!response.ok) {
+        throw new Error("something went wrong");
+      }
     })
   );
 

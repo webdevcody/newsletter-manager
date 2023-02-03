@@ -41,3 +41,30 @@ Request production SES to get out of sandbox mode. You'll need to convince AWS y
 Create an IAM user for programmatic access and setup your keys inside your .env file.
 
 Modify the `policy.json` file and attach it to your user.
+
+#### ACM
+
+Create and validate a certficate for the following:
+
+- newsletter.webdevcody.com
+- newsletter-api.webdevcody.com
+
+#### Domain
+
+- Setup CNAME for api
+- Setup CNAME for ui
+
+#### Deploying the UI
+
+- setup and source .env by running `. ./load-env.sh`
+- yarn deploy:ui
+- make sure to add the certificate and alternate domain name to cloudfront distrubtion
+
+#### Creating Gateway Domain
+
+- yarn workspace @wdc-newsletter/api create-domain
+
+#### Deploying the API
+
+- setup and source .env by running `. ./load-env.sh`
+- yarn deploy:api
