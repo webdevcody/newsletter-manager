@@ -26,4 +26,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           yarn workspace @wdc-newsletter/ui build
-          aws s3 cp ./ui/out s3://newsletter.webdevcody.com/ --recursive --region us-east-1
+          aws s3 sync ./ui/out s3://newsletter.webdevcody.com/ --delete --region us-east-1
