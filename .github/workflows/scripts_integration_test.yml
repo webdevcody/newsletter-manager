@@ -1,0 +1,21 @@
+name: Scripts - Integration Tests
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: docker/setup-docker@v2
+
+      - name: Run Docker Compose
+        run: |
+          docker-compose up -d
+
+      - name: Run tests
+        run: yarn workspace @wdc-newsletter/scripts test:integration

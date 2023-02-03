@@ -1,14 +1,22 @@
 import mjml2html from "mjml";
-import { type TSendNewsletterUseCase } from "@wdc-newsletter/business";
+import {
+  TGetSubscriptions,
+  TSendEmail,
+  type TSendNewsletterUseCase,
+} from "@wdc-newsletter/business";
 
 export async function sendEmails({
   getArguments,
   readFile,
   sendNewsletterUseCase,
+  getSubscriptions,
+  sendEmail,
 }: {
   getArguments: () => string[];
   readFile: (file: string) => string;
   sendNewsletterUseCase: TSendNewsletterUseCase;
+  getSubscriptions: TGetSubscriptions;
+  sendEmail: TSendEmail;
 }) {
   const [subject, mjmlFilePath] = getArguments();
 
@@ -26,5 +34,11 @@ export async function sendEmails({
   const mjmlToConvert = readFile(mjmlFilePath);
   const text = readFile(mjmlFilePath.replace(".mjml", ".txt"));
   const { html } = mjml2html(mjmlToConvert);
-  await sendNewsletterUseCase({ subject, body: html, text });
+  await sendNewsletterUseCase(
+    {
+      getSubscriptions,
+      sendEmail,
+    },
+    { subject, body: html, text }
+  );
 }

@@ -1,17 +1,31 @@
 import { DynamoDB } from "aws-sdk";
 import { env } from "../config/constants";
 
-const client = new DynamoDB.DocumentClient({
-  region: env.REGION,
-  credentials: {
-    accessKeyId: env.ACCESS_KEY,
-    secretAccessKey: env.SECRET_KEY,
-  },
-  endpoint: env.DYNAMO_ENDPOINT,
-});
+export type TDynamoConfig = {
+  region: string;
+  accessKeyId: string;
+  secretAccessKey: string;
+  endpoint: string;
+};
 
-export function get(key: { pk: string; sk: string }) {
-  return client
+function getClient({
+  region,
+  accessKeyId,
+  secretAccessKey,
+  endpoint,
+}: TDynamoConfig) {
+  return new DynamoDB.DocumentClient({
+    region,
+    credentials: {
+      accessKeyId,
+      secretAccessKey,
+    },
+    endpoint,
+  });
+}
+
+export function get(config: TDynamoConfig, key: { pk: string; sk: string }) {
+  return getClient(config)
     .get({
       TableName: env.TABLE_NAME,
       Key: key,
@@ -20,8 +34,8 @@ export function get(key: { pk: string; sk: string }) {
     .then(({ Item }) => Item);
 }
 
-export function remove(key: { pk: string; sk: string }) {
-  return client
+export function remove(config: TDynamoConfig, key: { pk: string; sk: string }) {
+  return getClient(config)
     .delete({
       TableName: env.TABLE_NAME,
       Key: key,
@@ -29,8 +43,8 @@ export function remove(key: { pk: string; sk: string }) {
     .promise();
 }
 
-export function scan() {
-  return client
+export function scan(config: TDynamoConfig) {
+  return getClient(config)
     .scan({
       TableName: env.TABLE_NAME,
     })
@@ -38,12 +52,15 @@ export function scan() {
     .then(({ Items }) => Items ?? []) as Promise<{ pk: string; sk: string }[]>;
 }
 
-export function put(item: {
-  pk: string;
-  sk: string;
-  [key: string]: string | number | boolean;
-}) {
-  return client
+export function put(
+  config: TDynamoConfig,
+  item: {
+    pk: string;
+    sk: string;
+    [key: string]: string | number | boolean;
+  }
+) {
+  return getClient(config)
     .put({
       TableName: env.TABLE_NAME,
       Item: item,

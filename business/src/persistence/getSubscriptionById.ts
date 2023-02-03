@@ -1,4 +1,4 @@
-import { get } from "./dynamo";
+import { get, TDynamoConfig } from "./dynamo";
 
 export type TSubscription = {
   pk: string;
@@ -7,9 +7,14 @@ export type TSubscription = {
   email: string;
 };
 
-export function getSubscriptionById(unsubscribeId: string) {
-  return get({
-    pk: `subscription|${unsubscribeId}`,
-    sk: `subscription|${unsubscribeId}`,
-  }).then((subscription) => subscription as TSubscription);
+export type TGetSubscriptionById = ReturnType<
+  typeof getSubscriptionByIdFactory
+>;
+
+export function getSubscriptionByIdFactory(config: TDynamoConfig) {
+  return (unsubscribeId: string) =>
+    get(config, {
+      pk: `subscription|${unsubscribeId}`,
+      sk: `subscription|${unsubscribeId}`,
+    }).then((subscription) => subscription as TSubscription);
 }
