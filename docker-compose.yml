@@ -4,7 +4,7 @@ services:
     build:
       context: .
     container_name: shell
-    tty: true
+    command: tail -f /dev/null
     environment:
       REGION: us-east-1
       ACCESS_KEY: local
