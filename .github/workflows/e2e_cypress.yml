@@ -15,4 +15,5 @@ jobs:
           docker-compose up -d --build
 
       - name: Run tests
-        run: docker exec shell sh -c "CYPRESS_BASE_URL=http://ui:3000 yarn workspace @wdc-newsletter/e2e cypress && exit $?"
+        run: |
+          docker exec shell sh -c "./wait-for.sh http://api:3010 && ./wait-for.sh http://ui:3000 && CYPRESS_BASE_URL=http://ui:3000 yarn workspace @wdc-newsletter/e2e cypress && exit $?"
