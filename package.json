@@ -5,7 +5,6 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "deploy:ui": "yarn workspace @wdc-newsletter/ui build && cd infra/ui && amplify publish --yes",
     "deploy:api": "yarn workspace @wdc-newsletter/api deploy",
     "cypress:open": "cypress open"
   },
@@ -30,7 +29,6 @@
   },
   "homepage": "https://github.com/webdevcody/newsletter-manager#readme",
   "devDependencies": {
-    "@aws-amplify/cli": "^10.6.2",
     "cypress": "^12.5.0"
   }
 }

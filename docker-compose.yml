@@ -1,9 +1,17 @@
 version: "3.7"
 services:
-  shell:
+  _build:
+    image: newsletter-image
+    command: ["echo", "build completed"]
     build:
       context: .
+      dockerfile: Dockerfile
+
+  shell:
+    image: newsletter-image
     container_name: shell
+    depends_on:
+      - _build
     command: tail -f /dev/null
     environment:
       REGION: us-east-1
@@ -18,8 +26,9 @@ services:
       - /home/app/node_modules
 
   ui:
-    build:
-      context: .
+    image: newsletter-image
+    depends_on:
+      - _build
     container_name: ui
     ports:
       - "3000:3000"
@@ -31,18 +40,20 @@ services:
       SES_ENDPOINT: http://ses-local:9001
       DYNAMO_ENDPOINT: http://dynamodb-local:8000
       HOST_NAME: http://localhost:3000
-      NEXT_PUBLIC_API_URL: http://localhost:3010
+      # for when running cypress in a container, we need to overwrite
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3010}
     volumes:
       - .:/home/app
       - /home/app/node_modules
 
   api:
-    build:
-      context: .
+    image: newsletter-image
     container_name: api
     ports:
       - "3010:3010"
     entrypoint: ["yarn", "workspace", "@wdc-newsletter/api", "dev"]
+    depends_on:
+      - _build
     environment:
       REGION: us-east-1
       ACCESS_KEY: local
@@ -63,16 +74,16 @@ services:
       - "8000:8000"
 
   dynamo-setup:
-    build:
-      context: .
+    image: newsletter-image
     container_name: dynamo-setup
+    depends_on:
+      - _build
+      - dynamodb-local
     environment:
       DYNAMO_ENDPOINT: "http://dynamodb-local:8000"
       REGION: "us-east-1"
       ACCESS_KEY: local
       SECRET_KEY: local
-    depends_on:
-      - dynamodb-local
     restart: "no"
     entrypoint:
       ["yarn", "workspace", "@wdc-newsletter/business", "dynamo:setup"]

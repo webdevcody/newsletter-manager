@@ -2,21 +2,41 @@
 
 This is the newsletter application I use for my youtube channel to send out updates to my subscriber.
 
+## User Features
+
+- a dedicated page where people can enter their email to subscribe to your newsletter
+- a success page which shows a custom message after subscribing
+- a dynamodb table which stores all subscriptions
+- a cli command for sending out mjml emails to your subscribers
+- users can unsubscribe via a rest api and link appended to all emails
+
+## Code Features
+
+- fully deployable using IaC via terraform and serverless framework
+- api is a monolambda
+- all in typescript
+- yarn monorepo approach
+- e2e testing using cypress
+- integration and unit testing using jest
+- everything can be ran locally via docker-compose
+- ci/cd setup using github actions for testing and deployment
+
 ## How to Run
 
-1. npm i
 1. docker-compose up
 1. open http://localhost:3000
 
-## Connect to Shell container
+## How to Develop
 
-`docker exec -it shell /bin/bash`
+My goal is to get all of this project 100% running in docker for local development. This means you'd need to docker exec into the shell container to do any one off commands or scripts. It's a bit more overhead, but I think it's worth it for consistency across developers and machines.
 
-## Running Cypress
+1. `docker-compose up`
+2. `docker exec -it shell /bin/bash`
 
-unfortunatley, cypress open will require you to install the node_modules:
+## Running E2E Tests
 
-1. npm run cypress:open
+1. `docker exec -it shell /bin/bash`
+1. `yarn workspace @wdc-newsletter/e2e cypress`
 
 ## How to Send Emails
 
@@ -72,3 +92,5 @@ Create and validate a certficate for the following:
 
 - setup and source .env by running `. ./load-env.sh`
 - yarn deploy:api
+
+# Issues

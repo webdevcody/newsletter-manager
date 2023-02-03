@@ -4,16 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "cypress": "cypress run",
     "cypress:open": "cypress open"
   },
   "keywords": [],
   "author": "Cody Seibert",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^18.11.18",
     "cypress": "^12.5.0"
   },
   "dependencies": {
     "@wdc-newsletter/business": "*",
+    "fs-extra": "^11.1.0",
     "typescript": "^4.9.5"
   }
 }

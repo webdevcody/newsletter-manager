@@ -9,6 +9,8 @@ import {
   unsubscribeUseCase,
 } from "@wdc-newsletter/business";
 import cors from "cors";
+import winston from "winston";
+import expressWinston from "express-winston";
 import { TDynamoConfig } from "@wdc-newsletter/business/src/persistence/dynamo";
 
 export const app = express();
@@ -21,9 +23,31 @@ const dynamoConfig: TDynamoConfig = {
 };
 
 app.use(express.json());
+
+app.use(
+  expressWinston.logger({
+    transports: [new winston.transports.Console()],
+    format: winston.format.combine(
+      winston.format.colorize(),
+      winston.format.json()
+    ),
+    meta: false,
+    msg: "HTTP  ",
+    expressFormat: true,
+    colorize: false,
+    ignoreRoute: function (req, res) {
+      return false;
+    },
+  })
+);
+
 app.use(
   cors({
-    origin: ["https://newsletter.webdevcody.com", "http://localhost:3000"],
+    origin: [
+      "https://newsletter.webdevcody.com",
+      "http://localhost:3000",
+      "http://ui:3000",
+    ],
   })
 );
 
@@ -41,7 +65,7 @@ app.post("/subscriptions", async function (req: Request, res: Response) {
 app.delete(
   "/subscriptions/:unsubscribeId",
   async function (req: Request, res: Response) {
-    const unsubscribeId = JSON.parse(req.params.unsubscribeId);
+    const unsubscribeId = req.params.unsubscribeId;
     await unsubscribeUseCase(
       {
         getSubscriptionById: getSubscriptionByIdFactory(dynamoConfig),

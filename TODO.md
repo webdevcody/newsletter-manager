@@ -1,5 +1,6 @@
 Feat:
 
+- mobile friendly
 - sns + auto delete bounced subscriptions
 - know if user opened email
 - dashboard to view recently published newsletter
