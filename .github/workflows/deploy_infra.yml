@@ -15,7 +15,7 @@ jobs:
       - name: Run Docker Compose
         run: |
           docker-compose build
-          docker-compose run shell -d
+          docker-compose run shell &
 
       - name: Run terraform
         env:
