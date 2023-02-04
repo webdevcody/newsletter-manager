@@ -14,11 +14,16 @@ jobs:
 
       - name: Run Docker Compose
         run: |
-          docker-compose build
-          docker-compose run shell &
+          docker build -t local .
 
       - name: Run terraform
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: docker exec shell sh -c "cd infra && terraform init && terraform apply -auto-approve && exit $?"
+        run: |
+          docker run \
+            -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+            -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+            -it \
+            -v `pwd`:/home/app local sh \
+            -c "cd infra && terraform init && terraform apply -auto-approve"
