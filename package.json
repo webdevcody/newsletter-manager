@@ -4,7 +4,9 @@
   "description": "",
   "private": true,
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "deploy:api": "yarn workspace @wdc-newsletter/api deploy"
+  },
   "workspaces": {
     "packages": [
       "business",
