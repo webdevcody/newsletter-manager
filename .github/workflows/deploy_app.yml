@@ -76,3 +76,4 @@ jobs:
         run: |
           yarn workspace @wdc-newsletter/ui build
           aws s3 sync ./ui/out s3://newsletter.webdevcody.com/ --delete --region us-east-1
+          ./infra/invalidate-cloudfront.sh

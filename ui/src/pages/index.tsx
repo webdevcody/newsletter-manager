@@ -43,7 +43,7 @@ const Home: NextPage = () => {
         <p className="text-wdc-secondary max-w-screen-sm text-center text-xl">
           Subscribe to my newsletter and receive weekly updates on any community
           projects we are starting, recently published videos, and updates on
-          new tutorials and courses..
+          new tutorials and courses.
         </p>
         <form onSubmit={handleSubscribe} className="flex flex-col gap-6">
           <fieldset className="flex flex-col gap-2">
