@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18 AS base
 
 RUN apt-get update -y && apt-get upgrade -y
 
@@ -13,6 +13,8 @@ RUN unzip terraform_1.3.7_linux_amd64.zip
 RUN mv terraform /usr/local/bin/
 
 WORKDIR /home/app
+
+FROM base AS deps
 
 COPY package.json .
 COPY business/package.json ./business/package.json

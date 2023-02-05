@@ -14,7 +14,7 @@ jobs:
 
       - name: Run Docker Build
         run: |
-          docker build -t local .
+          docker build --target base -t local .
 
       - name: Run terraform
         env:
