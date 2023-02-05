@@ -73,6 +73,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
         run: |
           yarn workspace @wdc-newsletter/ui build
           aws s3 sync ./ui/out s3://newsletter.webdevcody.com/ --delete --region us-east-1
