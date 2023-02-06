@@ -45,6 +45,7 @@ app.use(
   cors({
     origin: [
       "https://newsletter.webdevcody.com",
+      "https://webdevcody.com",
       "http://localhost:3000",
       "http://ui:3000",
     ],
