@@ -34,6 +34,7 @@ provider:
     DYNAMO_ENDPOINT: ${env:DYNAMO_ENDPOINT}
     HOST_NAME: ${env:HOST_NAME}
     TABLE_NAME: ${env:TABLE_NAME}
+    RECAPTCHA_SECRET: ${env:RECAPTCHA_SECRET}
 
 functions:
   app:
