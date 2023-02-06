@@ -8,17 +8,25 @@ import { useSubscribe } from "../api/useSubscribe";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Label } from "../components/Label";
+import { ReCaptchaProvider } from "next-recaptcha-v3";
+import { useReCaptcha } from "next-recaptcha-v3";
 
-const Home: NextPage = () => {
+const Home = () => {
   const { isLoading, subscribe } = useSubscribe();
   const [form, setForm] = useState({ email: "" });
   const router = useRouter();
 
-  function handleSubscribe(e: React.FormEvent) {
+  const { executeRecaptcha } = useReCaptcha();
+
+  async function handleSubscribe(e: React.FormEvent) {
     e.preventDefault();
-    subscribe(form.email)
-      .then(() => router.push("/success"))
-      .catch(console.error);
+    const token = await executeRecaptcha("subscribe");
+    try {
+      await subscribe({ email: form.email, token });
+      await router.push("/success");
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (
@@ -45,7 +53,14 @@ const Home: NextPage = () => {
           projects we are starting, recently published videos, and updates on
           new tutorials and courses.
         </p>
-        <form onSubmit={handleSubscribe} className="flex flex-col gap-6">
+        <form
+          onSubmit={(e) => {
+            handleSubscribe(e).catch((err) => {
+              console.error(err);
+            });
+          }}
+          className="flex flex-col gap-6"
+        >
           <fieldset className="flex flex-col gap-2">
             <Label htmlFor="email">Email</Label>
             <Input
@@ -68,4 +83,12 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+function RecaptchWrapper() {
+  return (
+    <ReCaptchaProvider>
+      <Home />
+    </ReCaptchaProvider>
+  );
+}
+
+export default RecaptchWrapper;

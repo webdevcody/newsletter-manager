@@ -40,6 +40,7 @@ services:
       SES_ENDPOINT: http://ses-local:9001
       DYNAMO_ENDPOINT: http://dynamodb-local:8000
       HOST_NAME: http://localhost:3000
+      NEXT_PUBLIC_RECAPTCHA_SITE_KEY: $NEXT_PUBLIC_RECAPTCHA_SITE_KEY
       # for when running cypress in a container, we need to overwrite
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3010}
     volumes:
@@ -61,6 +62,7 @@ services:
       SES_ENDPOINT: http://ses-local:9001
       DYNAMO_ENDPOINT: http://dynamodb-local:8000
       HOST_NAME: http://localhost:3000
+      RECAPTCHA_SECRET: $RECAPTCHA_SECRET
     volumes:
       - .:/home/app
       - /home/app/node_modules/

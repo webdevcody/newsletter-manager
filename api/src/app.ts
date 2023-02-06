@@ -12,6 +12,7 @@ import cors from "cors";
 import winston from "winston";
 import expressWinston from "express-winston";
 import { TDynamoConfig } from "@wdc-newsletter/business/src/persistence/dynamo";
+import { verifyRecaptcha } from "./security/verifyRecaptcha";
 
 export const app = express();
 
@@ -58,14 +59,19 @@ app.get("/status", async function (req: Request, res: Response) {
 });
 
 app.post("/subscriptions", async function (req: Request, res: Response) {
-  return res.status(500).send("disabled");
+  const { token, email } = req.body;
+  try {
+    await verifyRecaptcha(token, process.env.RECAPTCHA_SECRET);
+  } catch (err) {
+    return res.status(400).send("recaptcha token failed to validate");
+  }
 
   await subscribeUseCase(
     {
       getSubscriptionByEmail: getSubscriptionByEmailFactory(dynamoConfig),
       saveSubscription: saveSubscriptionFactory(dynamoConfig),
     },
-    req.body.email
+    email
   );
   res.send("subscribed");
 });

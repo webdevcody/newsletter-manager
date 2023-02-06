@@ -10,12 +10,14 @@ export function saveSubscriptionFactory(config: TDynamoConfig) {
         sk: `email|${email}`,
         email,
         unsubscribeId,
+        createdAt: new Date().toISOString(),
       }),
       put(config, {
         pk: `subscription|${unsubscribeId}`,
         sk: `subscription|${unsubscribeId}`,
         email,
         unsubscribeId,
+        createdAt: new Date().toISOString(),
       }),
     ]);
   };

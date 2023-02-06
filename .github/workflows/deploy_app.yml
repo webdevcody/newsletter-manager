@@ -52,6 +52,7 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          RECAPTCHA_SECRET: ${{ secrets.RECAPTCHA_SECRET }}
         run: yarn deploy:api
 
   deploy_ui:
@@ -74,6 +75,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-1
+          NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ vars.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
         run: |
           yarn workspace @wdc-newsletter/ui build
           aws s3 sync ./ui/out s3://newsletter.webdevcody.com/ --delete --region us-east-1
