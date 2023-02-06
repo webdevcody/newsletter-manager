@@ -58,6 +58,8 @@ app.get("/status", async function (req: Request, res: Response) {
 });
 
 app.post("/subscriptions", async function (req: Request, res: Response) {
+  return res.status(500).send("disabled");
+
   await subscribeUseCase(
     {
       getSubscriptionByEmail: getSubscriptionByEmailFactory(dynamoConfig),
