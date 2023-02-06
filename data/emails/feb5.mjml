@@ -1,0 +1,117 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-image
+          border-radius="50%"
+          width="100px"
+          src="https://www.webdevcody.com/wdc.jpeg"
+        ></mj-image>
+
+        <mj-divider border-color="#2fdeed"></mj-divider>
+
+        <mj-text
+          line-height="30px"
+          font-size="20px"
+          color="#1c2026"
+          font-family="helvetica"
+        >
+          <h2>4 Great Node CLI Ideas to Practice Coding</h2>
+          <p>
+            Many beginners are hyper-focused on learning react and building out
+            user interfaces, but trying to build our command line tools is an
+            alternative approach to solidify your knowledge with javascript,
+            node, and asynchronous programming. CLI tools might sound simple,
+            but they can easily get complex as well. You need to read from the
+            user input using command line arguments, you need to run complex
+            logic using that initial input, and you often ended to write to the
+            disk or make API requests. By taking the focus away from the UI, you
+            can focus more on the fundamentals of coding.
+          </p>
+
+          <p>
+            I wanted to provide you with four intermediate CLI project ideas you
+            can try building for yourself. I promise to try to build these tools
+            yourself will make you an overall better problem solver and
+            javascript developer, and the things learned WILL transfer over to
+            the front-end side of web development.
+          </p>
+
+          <h2>Converting a CSV file to JSON</h2>
+
+          <p>
+            Doing file reading and writing is critical for all programming
+            languages. Getting better at using node’s standard library for
+            parsing files will help you understand asynchronous code and maybe
+            even a little bit more about content types such as utf-8 or binary
+            you’ll need to understand when writing and reading files. Next,
+            you’ll need to figure out how to parse the CSV file after you read
+            it, which you could do by googling around for an existing npm
+            library or you could try to really stress your fundamental
+            javascript knowledge by looping over every line in the CSV,
+            splitting it by comma, and converting it to JSON objects. Finally,
+            you’ll want to track all of those rows inside an array so that you
+            can JSON.stringify the array out to a .json file. A lot to learn
+            from a simple CLI tool. Add in support for command line arguments if
+            you’re feeling adventurous.
+          </p>
+
+          <h2>CLI Email Sender Tool</h2>
+
+          <p>
+            Write a CLI tool that takes in an email address, a subject, and your
+            email body command line arguments. You could also have the email
+            addresses or email content come from a file if you are feeling
+            adventurous. The goal is to write a tool that uses a tool such as
+            nodemailer to use your Gmail account to send out an email. Learning
+            this will help you understand how to use third-party npm
+            dependencies, how to read their documentation, how to use command
+            line arguments, and a little bit more about how emails work, and
+            it’s something you can at some point add to the business logic of
+            your API when people register or forget their password.
+          </p>
+
+          <h2>CLI Hangman Game</h2>
+
+          <p>
+            This is a fun project for beginners because it stresses your
+            knowledge of how you can continuously read and wait for command line
+            input from the user. You’ll also have to learn how to use the
+            console log to print out designs and guessed letters to the console.
+            You’ll need to keep track of which letters the user guessed and
+            which ones they got correct. You can also take it to the next level
+            by connecting to an API to fetch a random word that the user will
+            have to guess. A simple game like this is great practice for various
+            fundamental things you’ll encounter in the real world like arrays,
+            looping, promises, API requests, console logging, etc.
+          </p>
+
+          <h2>Image Scaling CLI Tool</h2>
+
+          <p>
+            This is a CLI tool that will take in a path to an image file and
+            scale it down to various smaller device sizes which will allow you
+            to make more performant websites. Some tools do this for us already,
+            but learning how to make one yourself using graphicsmagick to load
+            in images and scale them is good practice with learning how to use
+            third-party machine dependencies you’d need to set up for node to
+            invoke. To practice your node sdk skills, use the node’s exec_child
+            commands to spawn up child processes that can invoke other command
+            line tools installed on the machine. You’ll also need to learn how
+            to write these images to the disk.
+          </p>
+
+          <h2>Conclusion</h2>
+          <p>
+            I hope you try to implement these ideas because I do feel they are
+            great practice. Stay in touch because I plan to make a small paid
+            course for maybe $2-3 that might build some of these tools and walk
+            you through how I’d do it.
+          </p>
+
+          <p>Have a good day, and happy coding!</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test:unit": "jest src",
-    "test:integration": "jest integration_tests"
+    "test:integration": "jest integration_tests",
+    "remove-bounced": "ts-node ./src/removeBouncedEmailCli.ts"
   },
   "keywords": [],
   "author": "Cody Seibert",
