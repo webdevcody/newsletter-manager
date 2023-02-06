@@ -1,40 +1,23 @@
-import { config } from "dotenv";
-config();
 import { sendEmails } from "./sendEmails";
 import {
   getSubscriptionsFactory,
   sendEmailFactory,
   sendNewsletterUseCase,
-  TSesConfig,
 } from "@wdc-newsletter/business";
 import fs from "fs";
-import { TDynamoConfig } from "@wdc-newsletter/business/src/persistence/dynamo";
+import { verifyEnv } from "./util/verifyEnv";
+import { getDynamoConfig, getSesConfig } from "./util/getConfigs";
 
 [
-  process.env.REGION,
-  process.env.ACCESS_KEY,
-  process.env.SECRET_KEY,
-  process.env.SES_ENDPOINT,
-  process.env.DYNAMO_ENDPOINT,
-].some((env) => {
-  if (!env) {
-    throw new Error("missing expected env variables");
-  }
-});
+  "REGION",
+  "ACCESS_KEY",
+  "SECRET_KEY",
+  "DYNAMO_ENDPOINT",
+  "SES_ENDPOINT",
+].forEach(verifyEnv);
 
-const sesConfig: TSesConfig = {
-  region: process.env.REGION,
-  accessKeyId: process.env.ACCESS_KEY,
-  secretAccessKey: process.env.SECRET_KEY,
-  endpoint: process.env.SES_ENDPOINT,
-};
-
-const dynamoConfig: TDynamoConfig = {
-  region: process.env.REGION,
-  accessKeyId: process.env.ACCESS_KEY,
-  secretAccessKey: process.env.SECRET_KEY,
-  endpoint: process.env.DYNAMO_ENDPOINT,
-};
+const sesConfig = getSesConfig();
+const dynamoConfig = getDynamoConfig();
 
 sendEmails({
   getArguments: () => process.argv?.slice(2),
