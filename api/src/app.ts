@@ -46,6 +46,7 @@ app.use(
     origin: [
       "https://newsletter.webdevcody.com",
       "https://webdevcody.com",
+      "https://www.webdevcody.com",
       "http://localhost:3000",
       "http://ui:3000",
     ],
