@@ -13,8 +13,8 @@ jobs:
       - name: Run Docker Compose
         env:
           NEXT_PUBLIC_API_URL: http://api:3010
-          DISABLE_RECAPTCHA: "true"
-          NEXT_PUBLIC_DISABLE_RECAPTCHA: "true"
+          DISABLE_RECAPTCHA: true
+          NEXT_PUBLIC_DISABLE_RECAPTCHA: true
         run: |
           docker-compose build
           docker-compose up -d
