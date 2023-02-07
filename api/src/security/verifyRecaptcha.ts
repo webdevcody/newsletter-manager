@@ -1,11 +1,6 @@
 import fetch from "node-fetch";
 
 export async function verifyRecaptcha(token: string, secret: string) {
-  console.log(process.env.DISABLE_RECAPTCHA);
-  console.log(process.env.DISABLE_RECAPTCHA);
-  console.log(process.env.DISABLE_RECAPTCHA);
-  console.log(process.env.DISABLE_RECAPTCHA);
-  console.log(process.env.DISABLE_RECAPTCHA);
   if (process.env.DISABLE_RECAPTCHA) return;
 
   const response = await fetch(
