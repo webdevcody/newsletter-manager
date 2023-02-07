@@ -3,22 +3,10 @@ terraform {
    bucket         = "wdc-newsletter-manager-terraform-state"
    key            = "state/terraform.tfstate"
    region         = "us-east-1"
-   encrypt        = true
-   kms_key_id     = "alias/terraform-bucket-key"
    dynamodb_table = "terraform-state"
  }
 }
 
-resource "aws_kms_key" "terraform-bucket-key" {
- description             = "This key is used to encrypt bucket objects"
- deletion_window_in_days = 10
- enable_key_rotation     = true
-}
-
-resource "aws_kms_alias" "key-alias" {
- name          = "alias/terraform-bucket-key"
- target_key_id = aws_kms_key.terraform-bucket-key.key_id
-}
 
 resource "aws_s3_bucket" "terraform-state" {
  bucket = "wdc-newsletter-manager-terraform-state"
@@ -26,15 +14,6 @@ resource "aws_s3_bucket" "terraform-state" {
 
  versioning {
    enabled = true
- }
-
- server_side_encryption_configuration {
-   rule {
-     apply_server_side_encryption_by_default {
-       kms_master_key_id = aws_kms_key.terraform-bucket-key.arn
-       sse_algorithm     = "aws:kms"
-     }
-   }
  }
 }
 
@@ -49,9 +28,8 @@ resource "aws_s3_bucket_public_access_block" "block" {
 
 resource "aws_dynamodb_table" "terraform-state" {
  name           = "terraform-state"
- read_capacity  = 20
- write_capacity = 20
  hash_key       = "LockID"
+ billing_mode = "PAY_PER_REQUEST"
 
  attribute {
    name = "LockID"
