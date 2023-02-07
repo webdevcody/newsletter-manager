@@ -13,13 +13,11 @@ jobs:
       - name: Run Docker Compose
         env:
           NEXT_PUBLIC_API_URL: http://api:3010
+          NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ vars.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
+          RECAPTCHA_SECRET: ${{ secrets.RECAPTCHA_SECRET }}
         run: |
           docker-compose up -d --build
 
       - name: Run tests
         run: |
-          docker exec shell sh -c \
-            "./wait-for.sh http://api:3010/status && \
-            ./wait-for.sh http://ui:3000 && \
-            CYPRESS_BASE_URL=http://ui:3000 \
-            yarn workspace @wdc-newsletter/e2e cypress"
+          docker exec shell sh -c "./wait-for.sh http://api:3010/status && ./wait-for.sh http://ui:3000 && CYPRESS_BASE_URL=http://ui:3000 yarn workspace @wdc-newsletter/e2e cypress"
