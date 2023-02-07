@@ -8,11 +8,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Run Docker Compose
         run: |
           docker-compose up -d --build
 
       - name: Run tests
-        run: docker exec shell sh -c "yarn workspace @wdc-newsletter/scripts test:integration && exit $?"
+        run: |
+          docker exec shell sh -c \
+            "yarn workspace @wdc-newsletter/scripts test:integration"
