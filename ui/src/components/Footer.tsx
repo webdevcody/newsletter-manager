@@ -12,7 +12,7 @@ export function Footer() {
           WebDevCody.com
         </a>
       </span>
-      <ul className="mt-3 flex flex-wrap items-center gap-8 text-xs text-gray-500 dark:text-gray-400 sm:mt-0">
+      <ul className="mt-6 grid grid-cols-2 flex-wrap items-center gap-8 text-xs text-gray-500 dark:text-gray-400 sm:mt-0 sm:grid-cols-3 md:mt-3 md:flex">
         <li>
           <a
             href="https://webdevcody.com"

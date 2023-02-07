@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
 
+env:
+  REGION: ${{ vars.REGION }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
 jobs:
   deploy_infra:
     runs-on: ubuntu-latest
@@ -17,9 +22,6 @@ jobs:
           docker build --target base -t local .
 
       - name: Run terraform
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           docker run \
             -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
@@ -38,20 +40,14 @@ jobs:
       - name: Install modules
         run: yarn
 
-      - name: Set env
-        run: |
-          echo "REGION=us-east-1" >> $GITHUB_ENV
-          echo "HOST_NAME=https://newsletter.webdevcody.com" >> $GITHUB_ENV
-          echo "DYNAMO_ENDPOINT=dynamodb.us-east-1.amazonaws.com" >> $GITHUB_ENV
-          echo "SES_ENDPOINT=email.us-east-1.amazonaws.com" >> $GITHUB_ENV
-          echo "TABLE_NAME=webdevcody_newsletter" >> $GITHUB_ENV
-
       - name: Deploy api
         env:
+          HOST_NAME: https://${{ vars.HOST_NAME }}
+          DYNAMO_ENDPOINT: dynamodb.${{ vars.REGION }}.amazonaws.com
+          SES_ENDPOINT: email.${{ vars.REGION }}.amazonaws.com
+          TABLE_NAME: ${{ vars.TABLE_NAME }}
           ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           RECAPTCHA_SECRET: ${{ secrets.RECAPTCHA_SECRET }}
         run: yarn deploy:api
 
@@ -66,17 +62,11 @@ jobs:
       - name: Install modules
         run: yarn
 
-      - name: Set env
-        run: |
-          echo "NEXT_PUBLIC_API_URL=https://newsletter-api.webdevcody.com" >> $GITHUB_ENV
-
       - name: Deploy ui
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-1
           NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ vars.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
+          NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
         run: |
           yarn workspace @wdc-newsletter/ui build
-          aws s3 sync ./ui/out s3://newsletter.webdevcody.com/ --delete --region us-east-1
+          aws s3 sync ./ui/out s3://${{ vars.HOST_NAME }}/ --delete --region ${{ vars.REGION }}
           ./infra/invalidate-cloudfront.sh

@@ -1,6 +1,8 @@
 import fetch from "node-fetch";
 
 export async function verifyRecaptcha(token: string, secret: string) {
+  if (process.env.DISABLE_RECAPTCHA) return;
+
   const response = await fetch(
     "https://www.google.com/recaptcha/api/siteverify",
     {

@@ -43,6 +43,7 @@ services:
       NEXT_PUBLIC_RECAPTCHA_SITE_KEY: $NEXT_PUBLIC_RECAPTCHA_SITE_KEY
       # for when running cypress in a container, we need to overwrite
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3010}
+      NEXT_PUBLIC_DISABLE_RECAPTCHA: $NEXT_PUBLIC_DISABLE_RECAPTCHA
     volumes:
       - .:/home/app
       - /home/app/node_modules
@@ -63,6 +64,7 @@ services:
       DYNAMO_ENDPOINT: http://dynamodb-local:8000
       HOST_NAME: http://localhost:3000
       RECAPTCHA_SECRET: $RECAPTCHA_SECRET
+      DISABLE_RECAPTCHA: $DISABLE_RECAPTCHA
     volumes:
       - .:/home/app
       - /home/app/node_modules/

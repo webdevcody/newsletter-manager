@@ -16,7 +16,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-winston": "^4.2.0",
-    "node-fetch": "^3.3.0",
+    "node-fetch": "2.6.9",
     "superjson": "^1.12.2",
     "winston": "^3.8.2",
     "zod": "^3.20.2"

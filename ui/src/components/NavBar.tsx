@@ -5,6 +5,45 @@ import { TwitchIcon } from "./icons/TwitchIcon";
 import { TwitterIcon } from "./icons/TwitterIcon";
 import { YouTubeIcon } from "./icons/YouTubeIcon";
 
+const links = [
+  {
+    href: "https://webdevcody.com",
+    content: (
+      <>
+        <GlobeIcon />
+        <span className="hidden md:block">Website</span>
+      </>
+    ),
+  },
+  {
+    href: "https://youtube.com/@webdevcody",
+    content: (
+      <>
+        <YouTubeIcon />
+        <span className="hidden md:block">YouTube</span>
+      </>
+    ),
+  },
+  {
+    href: "https://twitch.com/webdevcody",
+    content: (
+      <>
+        <TwitchIcon />
+        <span className="hidden md:block">Twitch</span>
+      </>
+    ),
+  },
+  {
+    href: "https://twitter.com/webdevcody",
+    content: (
+      <>
+        <TwitterIcon />
+        <span className="hidden md:block">Twitter</span>
+      </>
+    ),
+  },
+];
+
 export function NavBar() {
   return (
     <nav className="rounded border-gray-200 bg-white px-2 py-2.5 dark:bg-gray-900 sm:px-4">
@@ -18,82 +57,25 @@ export function NavBar() {
             alt="Flowbite Logo"
           />
           <span className="self-center whitespace-nowrap text-xl font-semibold text-white hover:text-wdc-primary">
-            WebDevCody Newsletter
+            <span className="hidden md:inline-block">WebDevCody</span>{" "}
+            Newsletter
           </span>
         </Link>
-        <button
-          data-collapse-toggle="navbar-default"
-          type="button"
-          className="ml-3 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
-          aria-controls="navbar-default"
-          aria-expanded="false"
-        >
-          <span className="sr-only">Open main menu</span>
-          <svg
-            className="h-6 w-6"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
-        </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:text-sm md:font-medium md:dark:bg-gray-900">
-            <li>
+        <ul className="flex gap-4 md:gap-8">
+          {links.map((link) => (
+            <li key={link.href}>
               <a
-                href="https://webdevcody.com"
+                href={link.href}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1 text-white hover:text-wdc-primary"
                 aria-current="page"
               >
-                <GlobeIcon />
-                Website
+                {link.content}
               </a>
             </li>
-            <li>
-              <a
-                href="https://youtube.com/@webdevcody"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 text-white hover:text-wdc-primary"
-              >
-                <YouTubeIcon />
-                YouTube
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="https://twitch.com/webdevcody"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 text-white hover:text-wdc-primary"
-              >
-                <TwitchIcon />
-                Twitch
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="https://twitter.com/webdevcody"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 text-white hover:text-wdc-primary"
-              >
-                <TwitterIcon />
-                Twitter
-              </a>
-            </li>
-          </ul>
-        </div>
+          ))}
+        </ul>
       </div>
     </nav>
   );

@@ -8,8 +8,10 @@ import { useSubscribe } from "../api/useSubscribe";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Label } from "../components/Label";
-import { ReCaptchaProvider } from "next-recaptcha-v3";
-import { useReCaptcha } from "next-recaptcha-v3";
+import { getReCaptchaProvider, getUseReCatpacha } from "../utils/useReCaptcha";
+
+const ReCaptchaProvider = getReCaptchaProvider();
+const useReCaptcha = getUseReCatpacha();
 
 const Home = () => {
   const { isLoading, subscribe } = useSubscribe();
@@ -83,12 +85,12 @@ const Home = () => {
   );
 };
 
-function RecaptchWrapper() {
+const RecaptchWrapper: NextPage = () => {
   return (
     <ReCaptchaProvider>
       <Home />
     </ReCaptchaProvider>
   );
-}
+};
 
 export default RecaptchWrapper;
