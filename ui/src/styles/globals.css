@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-wdc-dark;
+  @apply bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-white;
 }

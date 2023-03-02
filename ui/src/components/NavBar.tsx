@@ -46,7 +46,7 @@ const links = [
 
 export function NavBar() {
   return (
-    <nav className="rounded border-gray-200 bg-white px-2 py-2.5 dark:bg-gray-900 sm:px-4">
+    <nav className="border-gray-200 bg-cyan-200 px-2 py-2.5 dark:bg-gray-900 sm:px-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         <Link href="/" className="flex items-center gap-4 ">
           <Image
@@ -56,7 +56,7 @@ export function NavBar() {
             className="rounded-full"
             alt="Flowbite Logo"
           />
-          <span className="self-center whitespace-nowrap text-xl font-semibold text-white hover:text-wdc-primary">
+          <span className="self-center whitespace-nowrap text-xl font-semibold">
             <span className="hidden md:inline-block">WebDevCody</span>{" "}
             Newsletter
           </span>
@@ -68,7 +68,7 @@ export function NavBar() {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1 text-white hover:text-wdc-primary"
+                className="flex items-center gap-1 hover:text-wdc-primary"
                 aria-current="page"
               >
                 {link.content}

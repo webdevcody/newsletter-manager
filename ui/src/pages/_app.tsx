@@ -21,7 +21,7 @@ const queryClient = new QueryClient();
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <main className={`${mainFont.variable} bg-wdc-dark font-wdc text-white`}>
+      <main className={`${mainFont.variable} font-wdc`}>
         <NavBar />
         <Component {...pageProps} />
         <Footer />
