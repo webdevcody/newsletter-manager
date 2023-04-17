@@ -1,0 +1,35 @@
+My T3 Stack Course
+Hey subscribers!
+
+Those of you who have been watching my channel will know that one of the recent projects I've worked on was a full-stack SaaS that generated icons using artificial intelligence. I really enjoyed working on this side project and it uses many useful technologies that I feel others should learn if trying to become a web developer.
+
+As I mentioned in my channel, I've been working on a short course to help teach others how to build out a similar application that uses the same technologies that I used on my production-ready application.
+
+Well, great news! I've finally managed to finish my course that you're welcome to go purchase if learning the same technologies I used sounds interesting to you.
+
+Here is the link to the course: https://1017897100294.gumroad.com/l/jipjfm
+.  Be sure to use the following code of 9LX2QSM to get a 30% discount.
+
+What's Will You Learn?
+
+As mentioned, the following technologies are used in this course.
+
+            T3 Stack
+            Typescript
+            Prisma
+            tRPC
+            Tailwind CSS
+            Next Auth
+            AWS S3
+            AWS Amplify
+            Dall-e API
+            Stripe
+            and probably more...
+
+The course contains6 hours of content which is split up between 32 videos. I provide high level diagrams in the course to really help explain what we will build and how we will build it out. It has a 30 day return policy, so feel free to contact me if you are not happy with the course.
+
+         Who is this course made for?
+
+         As mentioned on the course page, this course isn't for complete beginners. I expect you have some knowledge of using javascript and maybe understand how to create react components. Having some exposure to tailwind css might help as well. The way I teach this course is very similar to how I make my youtube videos, so please go watch some of my free T3 stack videos on my youtube channel to get an idea of the teaching style.
+
+         Have a good day and happy coding!

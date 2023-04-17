@@ -1,0 +1,104 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-image
+          border-radius="50%"
+          width="100px"
+          src="https://www.webdevcody.com/wdc.jpeg"
+        ></mj-image>
+
+        <mj-divider border-color="#2fdeed"></mj-divider>
+
+        <mj-text
+          line-height="30px"
+          font-size="20px"
+          color="#1c2026"
+          font-family="helvetica"
+        >
+          <h1>My T3 Stack Course</h1>
+          <p>Hey subscribers!</p>
+
+          <p>
+            Those of you who have been watching my channel will know that one of
+            the recent projects I've worked on was a full-stack SaaS that
+            generated icons using artificial intelligence. I really enjoyed
+            working on this side project and it uses many useful technologies
+            that I feel others should learn if trying to become a web developer.
+          </p>
+
+          <p>
+            As I mentioned in my channel, I've been working on a short course to
+            help teach others how to build out a similar application that uses
+            the same technologies that I used on my production-ready
+            application.
+          </p>
+
+          <p>
+            Well, great news! I've finally managed to finish my course that
+            you're welcome to go purchase if learning the same technologies I
+            used sounds interesting to you.
+          </p>
+
+          <p>
+            Here is the link to the course:
+            <a href="https://1017897100294.gumroad.com/l/jipjfm">
+              https://1017897100294.gumroad.com/l/jipjfm</a
+            >. Be sure to use the following code of <b>9LX2QSM</b> to get a 30%
+            discount.
+          </p>
+
+          <h2>What's Will You Learn?</h2>
+
+          <p>
+            As mentioned, the following technologies are used in this course.
+          </p>
+
+          <ul>
+            <li>T3 Stack</li>
+            <li>Typescript</li>
+            <li>Prisma</li>
+            <li>tRPC</li>
+            <li>Tailwind CSS</li>
+            <li>Next Auth</li>
+            <li>AWS S3</li>
+            <li>AWS Amplify</li>
+            <li>Dall-e API</li>
+            <li>Stripe</li>
+            <li>and probably more...</li>
+          </ul>
+
+          <p>
+            The course contains <b>6 hours of content</b> which is split up
+            between <b>32 videos</b>. I provide high level diagrams in the
+            course to really help explain what we will build and how we will
+            build it out. It has a 30 day return policy, so feel free to contact
+            me if you are not happy with the course.
+          </p>
+
+          <h2>Who is this course made for?</h2>
+
+          <p>
+            As mentioned on the course page, this course isn't for complete
+            beginners. I expect you have some knowledge of using javascript and
+            maybe understand how to create react components. Having some
+            exposure to tailwind css might help as well. The way I teach this
+            course is very similar to how I make my youtube videos, so please go
+            watch some of my free T3 stack videos on my youtube channel to get
+            an idea of the teaching style.
+          </p>
+
+          <p>
+            Again, here is the course:
+            <a href="https://1017897100294.gumroad.com/l/jipjfm">
+              https://1017897100294.gumroad.com/l/jipjfm</a
+            >. Be sure to use the following code of <b>9LX2QSM</b> to get a 30%
+            discount
+          </p>
+
+          <p>Have a good day and <b>happy coding</b>!</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

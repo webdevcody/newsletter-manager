@@ -38,8 +38,8 @@ export function sendEmailFactory(config: TSesConfig) {
     textBody: string;
     unsubscribeId: string;
   }) => {
-    const unsubscribeLinkHtml = ` <a href="${env.HOST_NAME}/unsubscribe/${unsubscribeId}" target="_blank;">Unsubscribe</a>`;
-    const unsubscribeTextHtml = ` You can unsubscribe here: ${env.HOST_NAME}/unsubscribe/${unsubscribeId}`;
+    const unsubscribeLinkHtml = `<div style="text-align: center;">Seibert Software Solutions, LLC<br/>PO Box 913<br/>Harrison TN, 37341<br /><br /> <a href="${env.HOST_NAME}/unsubscribe/${unsubscribeId}" target="_blank;">Unsubscribe</a></div>`;
+    const unsubscribeTextHtml = `Seibert Software Solutions, LLC @ PO Box 913, Harrison TN, 37341, You can unsubscribe here: ${env.HOST_NAME}/unsubscribe/${unsubscribeId}`;
 
     return throttle(() => {
       console.info(`sending email to ${email}`);

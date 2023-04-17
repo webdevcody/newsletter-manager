@@ -40,7 +40,8 @@ My goal is to get all of this project 100% running in docker for local developme
 
 ## How to Send Emails
 
-1. `npx ts-node ./src/scripts/sendEmailsCli.ts "welcome to the jungle" "./src/data/emails/welcome.mjml"`
+1. `. ./load-env.sh .env.prod`
+1. `npx ts-node ./scripts/src/sendEmailsCli.ts "My New T3 Stack Course is Live" "./data/emails/t3-course.mjml"`
 
 ## Importing Emails to Prod
 

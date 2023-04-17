@@ -22,6 +22,7 @@ export async function sendNewsletterUseCase(
   }
 ) {
   const subscriptions = await await getSubscriptions();
+  console.log(`preparing to send ${subscriptions.length} emails`);
 
   await Promise.all(
     subscriptions.map((subscription) => {
