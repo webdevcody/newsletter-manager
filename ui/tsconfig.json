@@ -24,12 +24,6 @@
     "noUncheckedIndexedAccess": true,
     "rootDir": "."
   },
-  "include": [
-    "ui/next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.cjs",
-    "**/*.mjs"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
   "exclude": ["node_modules", "../cypress/**/*.spec.ts", "./cypress.config.ts"]
 }

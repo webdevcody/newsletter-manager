@@ -3,12 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build && next export",
-    "dev": "next dev",
+    "build": "next build",
+    "dev": "sst bind next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "sst deploy --stage prod"
   },
   "dependencies": {
+    "@aws-cdk/aws-certificatemanager": "^1.200.0",
+    "@aws-cdk/core": "^1.200.0",
     "@next/font": "13.1.5",
     "@tanstack/react-query": "^4.20.0",
     "@trpc/client": "^10.8.1",
@@ -45,6 +48,8 @@
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.1",
     "autoprefixer": "^10.4.7",
+    "aws-cdk-lib": "2.72.1",
+    "constructs": "10.1.156",
     "cypress": "^12.4.1",
     "dynamodb-admin": "^4.5.0",
     "eslint": "^8.33.0",
@@ -54,6 +59,7 @@
     "postcss": "^8.4.14",
     "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.1",
+    "sst": "^2.8.4",
     "tailwindcss": "^3.2.0",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",

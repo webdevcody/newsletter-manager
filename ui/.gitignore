@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+/.open-next
+/.sst
+
 # testing
 /coverage
 
