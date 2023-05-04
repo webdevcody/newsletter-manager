@@ -4,6 +4,7 @@
   "description": "all business related logic for the newsletter",
   "main": "src/index.ts",
   "scripts": {
+    "test": "jest",
     "dynamo:setup": "ts-node src/local/setupDynamo.ts"
   },
   "keywords": [],

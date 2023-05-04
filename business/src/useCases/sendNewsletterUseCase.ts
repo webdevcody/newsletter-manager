@@ -21,10 +21,11 @@ export async function sendNewsletterUseCase(
     text: string;
   }
 ) {
-  const subscriptions = await await getSubscriptions();
+  const subscriptions = await getSubscriptions();
+
   console.log(`preparing to send ${subscriptions.length} emails`);
 
-  await Promise.all(
+  await Promise.allSettled(
     subscriptions.map((subscription) => {
       return sendEmail({
         email: subscription.email,

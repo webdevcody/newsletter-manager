@@ -1,0 +1,85 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-image
+          border-radius="50%"
+          width="100px"
+          src="https://www.webdevcody.com/wdc.jpeg"
+        ></mj-image>
+
+        <mj-divider border-color="#2fdeed"></mj-divider>
+
+        <mj-text
+          line-height="30px"
+          font-size="20px"
+          color="#1c2026"
+          font-family="helvetica"
+        >
+          <h2>Why do sites have Cookie Banners?</h2>
+          <p>
+            If you have browsed around enough on the internet, you'll see that
+            many sites have a banner that pops up explaining the use of cookies
+            on their site. It seems annoying, but did you know that there are
+            laws in the EU trying to protect citizens from having their
+            information gathered without their consent?
+          </p>
+
+          <p>
+            I've always worked on internal applications for companies or sites
+            used only by the US, which means I never really took the time to
+            understand the purpose of these banners. But since I've recently
+            been working on my
+            <a target="_blank" href="https://icongeneratorai.com"
+              >https://icongeneratorai.com</a
+            >
+            SaaS product, and I've had many users from the EU try to generate
+            icons, I decided it was time to add in a cookie banner.
+          </p>
+
+          <h2>When do you need a cookie banner?</h2>
+
+          <p>
+            If your application uses cookies to track a user, such as using
+            google analytics, you will need a cookie banner. You should never
+            inject the google analytics scripts without the user's consent,
+            which means your "accept all cookies" button should do that google
+            analytics setup. If the user denies those cookies, you should never
+            inject those scripts either. You also need to provide a page that
+            allows users to change their preferences at any time and also a way
+            for them to clear those cookies from their browser when they decide
+            they don't want to be tracked.
+          </p>
+
+          <h2>How can you easily implement a cookie banner?</h2>
+
+          <p>
+            Recently I found a react library which I imported into my _app.tsx
+            file in next.js called
+            <a
+              target="_blank"
+              href="https://www.npmjs.com/package/react-cookie-consent"
+              >https://www.npmjs.com/package/react-cookie-consent</a
+            >. It works pretty well, but honestly if you wanted to build your
+            own banner it isn't too hard to do. In the banner, you'll want to
+            make sure the text explains why exactly you are using cookies on
+            this site and how you may be tracking their information. You will
+            want a button for them to accept your cookies, and a button for them
+            to prevent the tracking cookies. Note that authentication-related
+            cookies are unrelated to this banner. If your site doesn't track
+            anyone, you don't need a banner because those authentication cookies
+            are essential for the site to work.
+          </p>
+
+          <p>
+            I hope you found this little snippet of information useful. Remember
+            to abide by the laws of your country, and be courteous to your
+            users; don't just track them without giving them consent.
+          </p>
+
+          <p><b>Have a good day, and happy coding!</b></p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

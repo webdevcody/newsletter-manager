@@ -23,7 +23,8 @@ This is the newsletter application I use for my youtube channel to send out upda
 
 ## How to Run
 
-1. docker-compose up
+1. docker compose build
+1. docker compose up
 1. open http://localhost:3000
 
 ## How to Develop

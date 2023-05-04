@@ -69,12 +69,10 @@ export function sendEmailFactory(config: TSesConfig) {
         })
         .promise()
         .catch((err) => {
+          // TODO: on error, delete the bad email
           console.error(err);
           throw err;
         });
-    }).catch((err) => {
-      console.error(err);
-      throw err;
     });
   };
 }

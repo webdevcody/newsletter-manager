@@ -1,0 +1,15 @@
+Why do sites have Cookie Banners?
+If you have browsed around enough on the internet, you'll see that many sites have a banner that pops up explaining the use of cookies on their site. It seems annoying, but did you know that there are laws in the EU trying to protect citizens from having their information gathered without their consent?
+
+I've always worked on internal applications for companies or sites used only by the US, which means I never really took the time to understand the purpose of these banners. But since I've recently been working on my https://icongeneratorai.com SaaS product, and I've had many users from the EU try to generate icons, I decided it was time to add a cookie banner.
+
+When do you need a cookie banner?
+If your application uses cookies to track a user, such as using google analytics, you will need a cookie banner. You should never inject the google analytics scripts without the user's consent, which means your "accept all cookies" button should do that google analytics setup. If the user denies those cookies, you should never inject those scripts either. You also need to provide a page that allows users to change their preferences at any time and also a way for them to clear those cookies from their browser when they decide they don't want to be tracked.
+
+How can you easily implement a cookie banner?
+Recently I found a react library which I imported into my _app.tsx file in next.js called https://www.npmjs.com/package/react-cookie-consent. It works pretty well, but honestly, if you wanted to build your own banner it isn't too hard to do. In the banner, you'll want to make sure the text explains why exactly you are using cookies on this site and how you may be tracking their information. You will want a button for them to accept your cookies, and a button for them to prevent the tracking cookies. Note that authentication-related cookies are unrelated to this banner. If your site doesn't track anyone, you don't need a banner because those authentication cookies are essential for the site to work.
+
+I hope you found this little snippet of information useful. Remember to abide by the laws of your country, and be courteous to your users; don't just track them without giving them consent.
+
+Have a good day and happy coding!
+
