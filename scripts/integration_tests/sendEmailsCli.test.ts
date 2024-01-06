@@ -52,7 +52,7 @@ describe("sendEmails command line tool", () => {
 
     await new Promise<void>((resolve, reject) =>
       exec(
-        'npx tsx ./src/sendEmailsCli.ts "welcome to the jungle" "../data/emails/welcome.mjml"',
+        'npx ts-node ./src/sendEmailsCli.ts "welcome to the jungle" "../data/emails/welcome.mjml"',
         (err, stdout) => {
           if (err) reject(err);
           resolve();
