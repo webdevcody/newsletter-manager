@@ -12,9 +12,9 @@ jobs:
 
       - name: Run Docker Compose
         run: |
-          docker-compose up -d --build
+          docker-compose up --build
 
       - name: Run tests
         run: |
           sleep 20
-          docker exec shell sh -c "./wait-for.sh http://dynamodb-local:8000 && yarn workspace @wdc-newsletter/scripts test:integration"
+          docker exec shell sh -c "yarn workspace @wdc-newsletter/scripts test:integration"
