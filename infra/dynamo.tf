@@ -20,6 +20,5 @@ resource "aws_dynamodb_table" "basic-dynamodb-table" {
     hash_key           = "unsubscribeId"
     range_key          = "pk"
     projection_type    = "ALL" 
-    billing_mode       = "PAY_PER_REQUEST"
   }
 }
