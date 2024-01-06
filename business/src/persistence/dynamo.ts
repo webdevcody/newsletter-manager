@@ -67,3 +67,21 @@ export function put(
     })
     .promise();
 }
+
+export function queryFirstByGSI1(config: TDynamoConfig, pk: string) {
+  return getClient(config)
+    .query({
+      TableName: env.TABLE_NAME,
+      IndexName: "gsi1",
+      KeyConditionExpression: "#unsubscribeId = :pk",
+      ExpressionAttributeValues: {
+        ":pk": pk,
+      },
+      ExpressionAttributeNames: {
+        "#unsubscribeId": "unsubscribeId",
+      },
+      Limit: 1,
+    })
+    .promise()
+    .then((results) => results.Items?.[0]);
+}

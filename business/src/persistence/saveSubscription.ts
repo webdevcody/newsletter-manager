@@ -12,13 +12,6 @@ export function saveSubscriptionFactory(config: TDynamoConfig) {
         unsubscribeId,
         createdAt: new Date().toISOString(),
       }),
-      put(config, {
-        pk: `subscription|${unsubscribeId}`,
-        sk: `subscription|${unsubscribeId}`,
-        email,
-        unsubscribeId,
-        createdAt: new Date().toISOString(),
-      }),
     ]);
   };
 }

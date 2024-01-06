@@ -1,4 +1,4 @@
-import { get, TDynamoConfig } from "./dynamo";
+import { queryFirstByGSI1, TDynamoConfig } from "./dynamo";
 
 export type TSubscription = {
   pk: string;
@@ -13,8 +13,7 @@ export type TGetSubscriptionById = ReturnType<
 
 export function getSubscriptionByIdFactory(config: TDynamoConfig) {
   return (unsubscribeId: string) =>
-    get(config, {
-      pk: `subscription|${unsubscribeId}`,
-      sk: `subscription|${unsubscribeId}`,
-    }).then((subscription) => subscription as TSubscription);
+    queryFirstByGSI1(config, unsubscribeId).then(
+      (subscription) => subscription as TSubscription
+    );
 }

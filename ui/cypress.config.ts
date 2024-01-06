@@ -43,18 +43,6 @@ export default defineConfig({
           }));
           return allHeadersContent;
         },
-        getSubscriber: (unsubscribeId) => {
-          return client
-            .get({
-              TableName: TABLE_NAME,
-              Key: {
-                pk: `subscription|${unsubscribeId}`,
-                sk: `subscription|${unsubscribeId}`,
-              },
-            })
-            .promise()
-            .then(({ Item }) => Item ?? null);
-        },
         getSubscriberByEmail: (email) => {
           return client
             .get({

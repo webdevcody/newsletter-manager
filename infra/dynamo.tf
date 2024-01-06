@@ -14,4 +14,12 @@ resource "aws_dynamodb_table" "basic-dynamodb-table" {
     name = "sk"
     type = "S"
   }
+
+  global_secondary_index {
+    name               = "gsi1"
+    hash_key           = "unsubscribeId"
+    range_key          = "pk"
+    projection_type    = "ALL" 
+    billing_mode       = "PAY_PER_REQUEST"
+  }
 }

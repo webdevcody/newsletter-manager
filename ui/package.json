@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "sst bind next dev",
+    "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
     "deploy": "sst deploy --stage prod"

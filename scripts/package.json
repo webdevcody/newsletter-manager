@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "import": "tsx src/import.ts",
     "test:unit": "jest src",
     "test:integration": "jest integration_tests",
     "remove-bounced": "ts-node ./src/removeBouncedEmailCli.ts"
@@ -13,7 +14,8 @@
   "license": "MIT",
   "devDependencies": {
     "@jest/globals": "^29.4.1",
-    "@types/node": "^18.11.18"
+    "@types/node": "^18.11.18",
+    "tsx": "^4.7.0"
   },
   "dependencies": {
     "@wdc-newsletter/business": "*",

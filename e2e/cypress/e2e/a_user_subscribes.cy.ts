@@ -28,11 +28,6 @@ describe("a user can subscribe to my newsletter", () => {
         cy.task("getSubscriberByEmail", expectedEmail).then((subscriber) => {
           expect(subscriber).to.be.null;
         });
-        cy.task("getSubscriber", subscriber.unsubscribeId).then(
-          (subscriber) => {
-            expect(subscriber).to.be.null;
-          }
-        );
       }
     );
   });

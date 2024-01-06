@@ -1,11 +1,11 @@
-import { config } from "dotenv";
-config();
+import "dotenv/config";
 import { DynamoDB } from "aws-sdk";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
+import path from "path";
 
 const emails = JSON.parse(
-  fs.readFileSync("./emails.json", "utf-8")
+  fs.readFileSync(path.join(__dirname, "./emails.json"), "utf-8")
 ) as string[];
 
 const client = new DynamoDB.DocumentClient({
@@ -33,17 +33,6 @@ async function subscribe(email: string) {
   }
 
   const unsubscribeId = uuidv4();
-  await client
-    .put({
-      TableName: process.env.TABLE_NAME,
-      Item: {
-        pk: `subscription|${unsubscribeId}`,
-        sk: `subscription|${unsubscribeId}`,
-        email,
-        unsubscribeId,
-      },
-    })
-    .promise();
   await client
     .put({
       TableName: process.env.TABLE_NAME,
