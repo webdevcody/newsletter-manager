@@ -13,10 +13,6 @@ const dynamo = new DynamoDB({
 
 async function main() {
   console.info("creating table");
-  console.log(process.env.REGION);
-  console.log(process.env.ACCESS_KEY);
-  console.log(process.env.SECRET_KEY);
-  console.log(process.env.DYNAMO_ENDPOINT);
   await dynamo
     .createTable({
       TableName: env.TABLE_NAME,
@@ -39,11 +35,37 @@ async function main() {
           AttributeName: "sk",
           AttributeType: "S",
         },
+        {
+          AttributeName: "unsubscribeId",
+          AttributeType: "S",
+        },
       ],
       ProvisionedThroughput: {
         ReadCapacityUnits: 10,
         WriteCapacityUnits: 10,
       },
+      GlobalSecondaryIndexes: [
+        {
+          IndexName: "gsi1",
+          KeySchema: [
+            {
+              AttributeName: "unsubscribeId",
+              KeyType: "HASH",
+            },
+            {
+              AttributeName: "pk",
+              KeyType: "RANGE",
+            },
+          ],
+          Projection: {
+            ProjectionType: "ALL",
+          },
+          ProvisionedThroughput: {
+            ReadCapacityUnits: 5,
+            WriteCapacityUnits: 5,
+          },
+        },
+      ],
     })
     .promise()
     .catch(async (err) => {

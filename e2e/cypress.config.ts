@@ -7,12 +7,12 @@ import fsExtra from "fs-extra";
 const OUTPUT_EMAIL_FILE_PATH = "./output";
 
 const client = new DynamoDB.DocumentClient({
-  region: process.env.REGION,
+  region: env.REGION,
   credentials: {
-    accessKeyId: process.env.ACCESS_KEY,
-    secretAccessKey: process.env.SECRET_KEY,
+    accessKeyId: env.ACCESS_KEY,
+    secretAccessKey: env.SECRET_KEY,
   },
-  endpoint: process.env.DYNAMO_ENDPOINT,
+  endpoint: env.DYNAMO_ENDPOINT,
 });
 
 type TDynamoItem = {
@@ -23,6 +23,7 @@ type TDynamoItem = {
 export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:3000",
+    viewportWidth: 1400,
     setupNodeEvents(on) {
       on("task", {
         recreateOutputDirectory: () => {

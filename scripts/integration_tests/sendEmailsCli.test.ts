@@ -2,6 +2,7 @@ import { exec } from "child_process";
 import { mkdirSync, readdirSync, readFileSync, rmSync } from "fs";
 import fsExtra from "fs-extra";
 import {
+  env,
   getSubscriptionByEmailFactory,
   saveSubscriptionFactory,
   sendEmailFactory,
@@ -14,17 +15,10 @@ import { TDynamoConfig } from "@wdc-newsletter/business/src/persistence/dynamo";
 const OUTPUT_EMAIL_FILE_PATH = "../output";
 
 const dynamoConfig: TDynamoConfig = {
-  region: process.env.REGION,
-  accessKeyId: process.env.ACCESS_KEY,
-  secretAccessKey: process.env.SECRET_KEY,
-  endpoint: process.env.DYNAMO_ENDPOINT,
-};
-
-const sesConfig: TSesConfig = {
-  region: process.env.REGION,
-  accessKeyId: process.env.ACCESS_KEY,
-  secretAccessKey: process.env.SECRET_KEY,
-  endpoint: process.env.SES_ENDPOINT,
+  region: env.REGION,
+  accessKeyId: env.ACCESS_KEY,
+  secretAccessKey: env.SECRET_KEY,
+  endpoint: env.DYNAMO_ENDPOINT,
 };
 
 /**
@@ -52,8 +46,9 @@ describe("sendEmails command line tool", () => {
 
     await new Promise<void>((resolve, reject) =>
       exec(
-        'ts-node ./src/sendEmailsCli.ts "welcome to the jungle" "../data/emails/welcome.mjml"',
+        'npx tsx ./src/sendEmailsCli.ts "welcome to the jungle" "../data/emails/welcome.mjml"',
         (err, stdout) => {
+          console.log(stdout);
           if (err) reject(err);
           resolve();
         }
