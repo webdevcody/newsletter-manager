@@ -22,7 +22,7 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs16.x
+  runtime: nodejs18.x
   stage: prod
   region: us-east-1
 

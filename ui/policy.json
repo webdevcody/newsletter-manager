@@ -10,11 +10,13 @@
         "dynamodb:PutItem",
         "dynamodb:GetItem",
         "dynamodb:DeleteItem",
-        "dynamodb:Scan"
+        "dynamodb:Scan",
+        "dynamodb:Query"
       ],
       "Resource": [
         "arn:aws:ses:us-east-1:493255580566:identity/webdevcody.com",
-        "arn:aws:dynamodb:us-east-1:493255580566:table/webdevcody_newsletter"
+        "arn:aws:dynamodb:us-east-1:493255580566:table/webdevcody_newsletter",
+        "arn:aws:dynamodb:us-east-1:493255580566:table/webdevcody_newsletter/index/gsi1"
       ]
     }
   ]
