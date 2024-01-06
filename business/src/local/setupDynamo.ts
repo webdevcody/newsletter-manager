@@ -44,6 +44,24 @@ async function main() {
         ReadCapacityUnits: 10,
         WriteCapacityUnits: 10,
       },
+      GlobalSecondaryIndexes: [
+        {
+          IndexName: "gsi1",
+          KeySchema: [
+            {
+              AttributeName: "unsubscribeId",
+              KeyType: "HASH",
+            },
+            {
+              AttributeName: "pk",
+              KeyType: "RANGE",
+            },
+          ],
+          Projection: {
+            ProjectionType: "ALL",
+          },
+        },
+      ],
     })
     .promise()
     .catch(async (err) => {
