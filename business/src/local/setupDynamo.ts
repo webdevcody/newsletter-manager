@@ -39,6 +39,10 @@ async function main() {
           AttributeName: "sk",
           AttributeType: "S",
         },
+        {
+          AttributeName: "unsubscribeId",
+          AttributeType: "S",
+        },
       ],
       ProvisionedThroughput: {
         ReadCapacityUnits: 10,
@@ -59,6 +63,10 @@ async function main() {
           ],
           Projection: {
             ProjectionType: "ALL",
+          },
+          ProvisionedThroughput: {
+            ReadCapacityUnits: 5,
+            WriteCapacityUnits: 5,
           },
         },
       ],

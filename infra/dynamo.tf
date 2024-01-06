@@ -15,6 +15,11 @@ resource "aws_dynamodb_table" "basic-dynamodb-table" {
     type = "S"
   }
 
+  attribute {
+    name = "unsubscribeId"
+    type = "S"
+  }
+
   global_secondary_index {
     name               = "gsi1"
     hash_key           = "unsubscribeId"
