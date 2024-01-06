@@ -3,8 +3,8 @@ import { env } from "../config/constants";
 
 export function useSubscribe() {
   const { mutateAsync, isLoading } = useMutation(
-    ({ email, token }: { email: string; token: string }) =>
-      fetch(`${env.API_URL}/subscriptions`, {
+    ({ email, token }: { email: string; token: string }) => {
+      return fetch(`${env.API_URL}/subscriptions`, {
         method: "POST",
         body: JSON.stringify({
           email,
@@ -13,11 +13,12 @@ export function useSubscribe() {
         headers: {
           "Content-Type": "application/json",
         },
-      }).then((response) => {
+      }).then(async (response) => {
         if (!response.ok) {
-          throw new Error("something went wrong");
+          throw new Error(await response.text());
         }
-      })
+      });
+    }
   );
 
   return { subscribe: mutateAsync, isLoading };

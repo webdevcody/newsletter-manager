@@ -13,10 +13,6 @@ const dynamo = new DynamoDB({
 
 async function main() {
   console.info("creating table");
-  console.log(process.env.REGION);
-  console.log(process.env.ACCESS_KEY);
-  console.log(process.env.SECRET_KEY);
-  console.log(process.env.DYNAMO_ENDPOINT);
   await dynamo
     .createTable({
       TableName: env.TABLE_NAME,
