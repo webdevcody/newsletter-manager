@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "jest",
-    "dynamo:setup": "tsxsrc/local/setupDynamo.ts"
+    "dynamo:setup": "tsx src/local/setupDynamo.ts"
   },
   "keywords": [],
   "author": "Cody Seibert",
