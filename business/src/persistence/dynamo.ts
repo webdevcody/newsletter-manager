@@ -14,14 +14,6 @@ function getClient({
   secretAccessKey,
   endpoint,
 }: TDynamoConfig) {
-  console.log({
-    region,
-    credentials: {
-      accessKeyId,
-      secretAccessKey,
-    },
-    endpoint,
-  });
   return new DynamoDB.DocumentClient({
     region,
     credentials: {
@@ -33,7 +25,6 @@ function getClient({
 }
 
 export function get(config: TDynamoConfig, key: { pk: string; sk: string }) {
-  console.log(env.TABLE_NAME);
   return getClient(config)
     .get({
       TableName: env.TABLE_NAME,

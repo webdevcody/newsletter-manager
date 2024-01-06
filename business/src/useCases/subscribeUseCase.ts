@@ -13,7 +13,6 @@ export async function subscribeUseCase(
   },
   email: string
 ) {
-  console.log("c", process.env.TABLE_NAME);
   const subscription = await getSubscriptionByEmail(email);
 
   if (subscription) {
@@ -23,7 +22,6 @@ export async function subscribeUseCase(
   }
 
   const unsubscribeId = uuidv4();
-  console.log("c2");
 
   await saveSubscription(email, unsubscribeId);
 

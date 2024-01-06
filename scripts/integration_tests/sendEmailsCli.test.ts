@@ -21,8 +21,6 @@ const dynamoConfig: TDynamoConfig = {
   endpoint: env.DYNAMO_ENDPOINT,
 };
 
-console.log(dynamoConfig);
-
 /**
  * This integration test expects the docker-compose to be up.
  */
@@ -36,10 +34,7 @@ describe("sendEmails command line tool", () => {
 
     const subscriberEmails = ["webdevcody@gmail.com", "bob@example.com"];
 
-    console.log("a");
     for (const email of subscriberEmails) {
-      console.log("b");
-
       await subscribeUseCase(
         {
           getSubscriptionByEmail: getSubscriptionByEmailFactory(dynamoConfig),
@@ -49,7 +44,6 @@ describe("sendEmails command line tool", () => {
       );
     }
 
-    console.log("d");
     await new Promise<void>((resolve, reject) =>
       exec(
         'npx tsx ./src/sendEmailsCli.ts "welcome to the jungle" "../data/emails/welcome.mjml"',
@@ -60,7 +54,6 @@ describe("sendEmails command line tool", () => {
         }
       )
     );
-    console.log("e");
 
     const [dir] = readdirSync(OUTPUT_EMAIL_FILE_PATH);
     if (!dir) throw new Error("no emails sent");

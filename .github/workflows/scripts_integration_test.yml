@@ -16,5 +16,4 @@ jobs:
 
       - name: Run tests
         run: |
-          sleep 20
           docker exec shell sh -c "yarn workspace @wdc-newsletter/scripts test:integration"
