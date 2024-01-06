@@ -14,6 +14,14 @@ function getClient({
   secretAccessKey,
   endpoint,
 }: TDynamoConfig) {
+  console.log({
+    region,
+    credentials: {
+      accessKeyId,
+      secretAccessKey,
+    },
+    endpoint,
+  });
   return new DynamoDB.DocumentClient({
     region,
     credentials: {
