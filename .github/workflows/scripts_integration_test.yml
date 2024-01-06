@@ -16,4 +16,5 @@ jobs:
 
       - name: Run tests
         run: |
+          sleep 20
           docker exec shell sh -c "./wait-for.sh http://dynamodb-local:8000 && yarn workspace @wdc-newsletter/scripts test:integration"
