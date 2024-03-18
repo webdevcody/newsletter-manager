@@ -22,6 +22,7 @@ export async function subscribeUseCase(
   }
 
   const unsubscribeId = uuidv4();
+
   await saveSubscription(email, unsubscribeId);
 
   return {

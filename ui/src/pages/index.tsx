@@ -16,6 +16,7 @@ const useReCaptcha = getUseReCatpacha();
 const Home = () => {
   const { isLoading, subscribe } = useSubscribe();
   const [form, setForm] = useState({ email: "" });
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const { executeRecaptcha } = useReCaptcha();
@@ -27,7 +28,8 @@ const Home = () => {
       await subscribe({ email: form.email, token });
       await router.push("/success");
     } catch (err) {
-      console.error(err);
+      const error = err as Error;
+      setError(error.message);
     }
   }
 
@@ -55,6 +57,11 @@ const Home = () => {
           projects we are starting, recently published videos, and updates on
           new tutorials and courses.
         </p>
+
+        {error && (
+          <div className="rounded bg-red-200 p-2 text-black">{error}</div>
+        )}
+
         <form
           onSubmit={(e) => {
             handleSubscribe(e).catch((err) => {
